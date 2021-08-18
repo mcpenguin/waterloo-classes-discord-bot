@@ -124,7 +124,9 @@ async def get_class_list(ctx):
             # c['time'],
             # c['room'],
             c['instructor']] for c in class_info['classes']
-        ][int(NO_IN_PAGE * (int(page) - 1)):int(min(int(NO_IN_PAGE * int(page)), len(classes) - 1))]
+        ][int(NO_IN_PAGE * (int(page) - 1)):int(min(int(NO_IN_PAGE * int(page)), len(classes)))]
+
+        print(classes_body)
 
         response.add_field(
             name = 'Classes (page {} of {})'.format(page, (len(classes) - 1 )// NO_IN_PAGE + 1),
