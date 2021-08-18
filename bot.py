@@ -21,7 +21,7 @@ NO_IN_PAGE = 5
 client = MongoClient(MONGO_URL)
 db = client['waterloo']['courses']
 
-# get class info method
+# get class info 
 def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
     
     class_info = db.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber, 'term': term})
@@ -31,11 +31,9 @@ def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
 
     return 'Course does not exist'
 
-# get class number method
+# get class number 
 def get_class_section_info(subjectCode, catalogNumber, classNo, term = CURRENT_TERM):
-    
     class_info = db.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber, 'term': term})
-    print(class_info[0]['classes'])
     for x in class_info[0]['classes']:
         if x['classNumber'] == classNo:
             return x
@@ -87,7 +85,7 @@ async def get_class_list(ctx):
         # create response
         response = discord.Embed(
             title = class_info['subjectCode'] + ' ' + class_info['catalogNumber'] + ' - ' + class_info['title'],
-            color = discord.Color.from_rgb(0, 0, 255),
+            color = discord.Color.from_rgb(22, 219, 117),
         )
 
         # add course level
