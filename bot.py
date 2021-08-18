@@ -31,6 +31,18 @@ def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
 
     return 'Course does not exist'
 
+# get class number method
+def get_class_section_info(subjectCode, catalogNumber, classNo, term = CURRENT_TERM):
+    
+    class_info = db.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber, 'term': term})
+    
+    for x in class_info['classes']:
+        if x['classNumber'] == classNo:
+            return x
+    
+    return 'Class does not exist'
+
+
 # get value of tag in command
 def get_tag_value(tag, command, default=None):
     command_split = command.split(" ")
@@ -64,6 +76,10 @@ async def get_class_list(ctx):
 
     # get class info
     class_info = get_class_info(subjectCode, catalogNumber, term)
+    # if class is not valid, return error response 
+    if type(class_info) == str:
+        await ctx.send(response)
+        return
 
     # create response
     response = discord.Embed(
