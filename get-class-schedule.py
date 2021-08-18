@@ -43,6 +43,7 @@ subjects = [item.attrs['value'] for item in br.find_control(name='subject').item
 # get mongodb database using mongo client
 client = MongoClient(os.getenv('MONGO_URL'))
 
+@sched.scheduled_job('interval', minutes=60)
 def getClassSchedule():
     for SUBJECT in subjects:
         for TERM in [CURRENT_TERM]: # only update current term
@@ -162,9 +163,5 @@ def getClassSchedule():
 
                 print('Updated courses for subject {} for term {} for level {}'.format(SUBJECT, TERM, 'UG' if link == UNDER_LINK else 'G'))
 
-@sched.scheduled_job('interval', minutes=1)
-def job():
-    print('this job is run every minute.')
-
-
+# start the scheduling
 sched.start()
