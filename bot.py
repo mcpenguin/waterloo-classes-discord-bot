@@ -180,7 +180,7 @@ async def get_class_list(ctx):
 
         response.add_field(
             name = 'Time',
-            value = class_section_info['time'],
+            value = "Not Given" if class_section_info['time'] == "" else class_section_info['time'],
             inline = True
         )
 
