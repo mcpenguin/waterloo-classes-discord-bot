@@ -35,8 +35,8 @@ def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
 def get_class_section_info(subjectCode, catalogNumber, classNo, term = CURRENT_TERM):
     
     class_info = db.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber, 'term': term})
-    
-    for x in class_info['classes']:
+    print(class_info[0]['classes'])
+    for x in class_info[0]['classes']:
         if x['classNumber'] == classNo:
             return x
     
@@ -63,7 +63,7 @@ async def get_class_list(ctx):
     params = content.split(" ")[1:]
 
     # initialize generic response
-    response = 'Unknown course, please check and try again'
+    response = 'The system could not find the specified class/course, please try again'
 
     # usage
     # ?class [subject code] [catalog number] (-t term) (-p page) (-c class_no) 
@@ -72,7 +72,7 @@ async def get_class_list(ctx):
 
     term = get_tag_value('-t', content, CURRENT_TERM)
     page = get_tag_value('-p', content, 1)
-    class_no = get_tag_value('-c', content)
+    class_no = get_tag_value('-c', content, None)
 
     # get class info
     class_info = get_class_info(subjectCode, catalogNumber, term)
@@ -81,60 +81,125 @@ async def get_class_list(ctx):
         await ctx.send(response)
         return
 
-    # create response
-    response = discord.Embed(
-        title = class_info['subjectCode'] + ' ' + class_info['catalogNumber'] + ' - ' + class_info['title'],
-        color = discord.Color.from_rgb(0, 0, 255),
-    )
+    # get course info and list of classes
+    if class_no == None:
 
-    # add course level
-    response.add_field(
-        name = 'Level',
-        value = {
-            'UG': 'Undergraduate',
-            'G': 'Graduate',
-        }[class_info['level']],
-        inline = True
-    ) 
-    # add course units
-    response.add_field(
-        name = 'Units',
-        value = class_info['units'],
-        inline = True
-    )
+        # create response
+        response = discord.Embed(
+            title = class_info['subjectCode'] + ' ' + class_info['catalogNumber'] + ' - ' + class_info['title'],
+            color = discord.Color.from_rgb(0, 0, 255),
+        )
 
-    # add course classes
-    classes = class_info['classes']
-    classes_head = [
-        '#',
-        'Sect',
-        'Camp Loc',
-        'Cap',
-        # 'Time',
-        # 'Room',
-        'Prof'
-    ]
+        # add course level
+        response.add_field(
+            name = 'Level',
+            value = {
+                'UG': 'Undergraduate',
+                'G': 'Graduate',
+            }[class_info['level']],
+            inline = True
+        ) 
+        # add course units
+        response.add_field(
+            name = 'Units',
+            value = class_info['units'],
+            inline = True
+        )
 
-    classes_body = [
-        [c['classNumber'], 
-        c['section'], 
-        " ".join(c['campusLocation'].split()), # replace adjacent white spaces with single spaces
-        '{}/{}'.format(c['enrolTotal'], c['enrolCap']),
-        # c['time'],
-        # c['room'],
-        c['instructor']] for c in class_info['classes']
-    ][int(NO_IN_PAGE * (int(page) - 1)):int(min(int(NO_IN_PAGE * int(page)), len(classes) - 1))]
+        # add course classes
+        classes = class_info['classes']
+        classes_head = [
+            '#',
+            'Sect',
+            'Camp Loc',
+            'Cap',
+            # 'Time',
+            # 'Room',
+            'Prof'
+        ]
 
-    response.add_field(
-        name = 'Classes (page {} of {})'.format(page, (len(classes) - 1 )// NO_IN_PAGE + 1),
-        value = '```' + tabulate(classes_body, classes_head) + '```',
-        inline = False
-    )
+        classes_body = [
+            [c['classNumber'], 
+            c['section'], 
+            " ".join(c['campusLocation'].split()), # replace adjacent white spaces with single spaces
+            '{}/{}'.format(c['enrolTotal'], c['enrolCap']),
+            # c['time'],
+            # c['room'],
+            c['instructor']] for c in class_info['classes']
+        ][int(NO_IN_PAGE * (int(page) - 1)):int(min(int(NO_IN_PAGE * int(page)), len(classes) - 1))]
 
-    # add last updated
-    response.set_footer(
-        text = 'Last updated: ' + class_info['dateUpdated'] + ' ' * 30
-    )
+        response.add_field(
+            name = 'Classes (page {} of {})'.format(page, (len(classes) - 1 )// NO_IN_PAGE + 1),
+            value = '```' + tabulate(classes_body, classes_head) + '```',
+            inline = False
+        )
+
+        # add last updated
+        response.set_footer(
+            text = 'Last updated: ' + class_info['dateUpdated'] + ' ' * 30
+        )
+
+    # if class number is specified, get the specific class info
+    else:
+        class_section_info = get_class_section_info(subjectCode, catalogNumber, class_no, term)
+        # check whether valid class
+        if type(class_section_info) == str:
+            await ctx.send(response)
+            return
+        
+        # create response
+        response = discord.Embed(
+            title = class_info['subjectCode'] + ' ' + class_info['catalogNumber'] + ' - ' + class_info['title'],
+            color = discord.Color.from_rgb(0, 0, 255),
+        )
+
+        response.add_field(
+            name = 'Class #',
+            value = class_section_info['classNumber'],
+            inline = True
+        )
+
+        response.add_field(
+            name = 'Section',
+            value = class_section_info['section'],
+            inline = True
+        )
+
+        response.add_field(
+            name = 'Capacity',
+            value = '{}/{}'.format(class_section_info['enrolTotal'], class_section_info['enrolCap']),
+            inline = False
+        )
+
+        response.add_field(
+            name = 'Campus Location',
+            value = " ".join(class_section_info['campusLocation'].split()),
+            inline = False
+
+        )
+
+        response.add_field(
+            name = 'Time',
+            value = class_section_info['time'],
+            inline = True
+        )
+
+        response.add_field(
+            name = 'Room',
+            value = class_section_info['room'],
+            inline = True
+        )
+
+        response.add_field(
+            name = 'Instructor',
+            value = class_section_info['instructor'],
+            inline = False
+        )
+
+        # add last updated
+        response.set_footer(
+            text = 'Last updated: ' + class_info['dateUpdated'] + ' ' * 30
+        )
 
     
     if type(response) == discord.Embed:
