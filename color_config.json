@@ -1,0 +1,2372 @@
+{
+    "AADMS": {
+        "color": {
+            "background": "#9601b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d373e6",
+                "border": "black"
+            }
+        }
+    },
+    "AB": {
+        "color": {
+            "background": "#2f01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#9073e6",
+                "border": "black"
+            }
+        }
+    },
+    "ACC": {
+        "color": {
+            "background": "#7cb301",
+            "border": "black",
+            "highlight": {
+                "background": "#c2e673",
+                "border": "black"
+            }
+        }
+    },
+    "ACINTY": {
+        "color": {
+            "background": "#b31b01",
+            "border": "black",
+            "highlight": {
+                "background": "#e68373",
+                "border": "black"
+            }
+        }
+    },
+    "ACTSC": {
+        "color": {
+            "background": "#b30175",
+            "border": "black",
+            "highlight": {
+                "background": "#e673be",
+                "border": "black"
+            }
+        }
+    },
+    "ADMGT": {
+        "color": {
+            "background": "#9401b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d273e6",
+                "border": "black"
+            }
+        }
+    },
+    "AE": {
+        "color": {
+            "background": "#0122b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7388e6",
+                "border": "black"
+            }
+        }
+    },
+    "AES": {
+        "color": {
+            "background": "#01b355",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6a9",
+                "border": "black"
+            }
+        }
+    },
+    "AFM": {
+        "color": {
+            "background": "#0106b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7376e6",
+                "border": "black"
+            }
+        }
+    },
+    "AHS": {
+        "color": {
+            "background": "#9201b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d173e6",
+                "border": "black"
+            }
+        }
+    },
+    "AMATH": {
+        "color": {
+            "background": "#b34201",
+            "border": "black",
+            "highlight": {
+                "background": "#e69d73",
+                "border": "black"
+            }
+        }
+    },
+    "ANTH": {
+        "color": {
+            "background": "#b3013d",
+            "border": "black",
+            "highlight": {
+                "background": "#e6739a",
+                "border": "black"
+            }
+        }
+    },
+    "APPLS": {
+        "color": {
+            "background": "#0196b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73d3e6",
+                "border": "black"
+            }
+        }
+    },
+    "ARBUS": {
+        "color": {
+            "background": "#b30158",
+            "border": "black",
+            "highlight": {
+                "background": "#e673ab",
+                "border": "black"
+            }
+        }
+    },
+    "ARCH": {
+        "color": {
+            "background": "#0124b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7389e6",
+                "border": "black"
+            }
+        }
+    },
+    "ARCHL": {
+        "color": {
+            "background": "#b3015f",
+            "border": "black",
+            "highlight": {
+                "background": "#e673b0",
+                "border": "black"
+            }
+        }
+    },
+    "ARTS": {
+        "color": {
+            "background": "#01b33d",
+            "border": "black",
+            "highlight": {
+                "background": "#73e69a",
+                "border": "black"
+            }
+        }
+    },
+    "ASIAN": {
+        "color": {
+            "background": "#9701b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d473e6",
+                "border": "black"
+            }
+        }
+    },
+    "ASTRN": {
+        "color": {
+            "background": "#b34801",
+            "border": "black",
+            "highlight": {
+                "background": "#e6a073",
+                "border": "black"
+            }
+        }
+    },
+    "AVIA": {
+        "color": {
+            "background": "#b38701",
+            "border": "black",
+            "highlight": {
+                "background": "#e6ca73",
+                "border": "black"
+            }
+        }
+    },
+    "BASE": {
+        "color": {
+            "background": "#b38b01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6cc73",
+                "border": "black"
+            }
+        }
+    },
+    "BE": {
+        "color": {
+            "background": "#b36801",
+            "border": "black",
+            "highlight": {
+                "background": "#e6b673",
+                "border": "black"
+            }
+        }
+    },
+    "BET": {
+        "color": {
+            "background": "#b39801",
+            "border": "black",
+            "highlight": {
+                "background": "#e6d573",
+                "border": "black"
+            }
+        }
+    },
+    "BIOL": {
+        "color": {
+            "background": "#b30123",
+            "border": "black",
+            "highlight": {
+                "background": "#e67389",
+                "border": "black"
+            }
+        }
+    },
+    "BME": {
+        "color": {
+            "background": "#b3ae01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6e373",
+                "border": "black"
+            }
+        }
+    },
+    "BUS": {
+        "color": {
+            "background": "#0189b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73cbe6",
+                "border": "black"
+            }
+        }
+    },
+    "CCIV": {
+        "color": {
+            "background": "#aa01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#e073e6",
+                "border": "black"
+            }
+        }
+    },
+    "CDNST": {
+        "color": {
+            "background": "#012fb3",
+            "border": "black",
+            "highlight": {
+                "background": "#7390e6",
+                "border": "black"
+            }
+        }
+    },
+    "CEDEV": {
+        "color": {
+            "background": "#b3015e",
+            "border": "black",
+            "highlight": {
+                "background": "#e673af",
+                "border": "black"
+            }
+        }
+    },
+    "CHE": {
+        "color": {
+            "background": "#01b39a",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6d6",
+                "border": "black"
+            }
+        }
+    },
+    "CHEM": {
+        "color": {
+            "background": "#01b388",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6ca",
+                "border": "black"
+            }
+        }
+    },
+    "CHINA": {
+        "color": {
+            "background": "#3b01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#9873e6",
+                "border": "black"
+            }
+        }
+    },
+    "CIVE": {
+        "color": {
+            "background": "#2b01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#8e73e6",
+                "border": "black"
+            }
+        }
+    },
+    "CLAS": {
+        "color": {
+            "background": "#01b308",
+            "border": "black",
+            "highlight": {
+                "background": "#73e677",
+                "border": "black"
+            }
+        }
+    },
+    "CM": {
+        "color": {
+            "background": "#b30157",
+            "border": "black",
+            "highlight": {
+                "background": "#e673aa",
+                "border": "black"
+            }
+        }
+    },
+    "CMW": {
+        "color": {
+            "background": "#0124b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7389e6",
+                "border": "black"
+            }
+        }
+    },
+    "CO": {
+        "color": {
+            "background": "#01b325",
+            "border": "black",
+            "highlight": {
+                "background": "#73e68a",
+                "border": "black"
+            }
+        }
+    },
+    "COGSCI": {
+        "color": {
+            "background": "#0db301",
+            "border": "black",
+            "highlight": {
+                "background": "#7ae673",
+                "border": "black"
+            }
+        }
+    },
+    "COMM": {
+        "color": {
+            "background": "#3501b3",
+            "border": "black",
+            "highlight": {
+                "background": "#9473e6",
+                "border": "black"
+            }
+        }
+    },
+    "COMPT": {
+        "color": {
+            "background": "#15b301",
+            "border": "black",
+            "highlight": {
+                "background": "#80e673",
+                "border": "black"
+            }
+        }
+    },
+    "COMST": {
+        "color": {
+            "background": "#018db3",
+            "border": "black",
+            "highlight": {
+                "background": "#73cde6",
+                "border": "black"
+            }
+        }
+    },
+    "CONST": {
+        "color": {
+            "background": "#0116b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7380e6",
+                "border": "black"
+            }
+        }
+    },
+    "COOP": {
+        "color": {
+            "background": "#4d01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#a473e6",
+                "border": "black"
+            }
+        }
+    },
+    "CRGC": {
+        "color": {
+            "background": "#0130b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7391e6",
+                "border": "black"
+            }
+        }
+    },
+    "CROAT": {
+        "color": {
+            "background": "#b38f01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6ce73",
+                "border": "black"
+            }
+        }
+    },
+    "CS": {
+        "color": {
+            "background": "#9c01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d773e6",
+                "border": "black"
+            }
+        }
+    },
+    "CT": {
+        "color": {
+            "background": "#b30102",
+            "border": "black",
+            "highlight": {
+                "background": "#e67373",
+                "border": "black"
+            }
+        }
+    },
+    "CULMG": {
+        "color": {
+            "background": "#9801b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d473e6",
+                "border": "black"
+            }
+        }
+    },
+    "CULT": {
+        "color": {
+            "background": "#66b301",
+            "border": "black",
+            "highlight": {
+                "background": "#b4e673",
+                "border": "black"
+            }
+        }
+    },
+    "DAC": {
+        "color": {
+            "background": "#0140b3",
+            "border": "black",
+            "highlight": {
+                "background": "#739ce6",
+                "border": "black"
+            }
+        }
+    },
+    "DANCE": {
+        "color": {
+            "background": "#67b301",
+            "border": "black",
+            "highlight": {
+                "background": "#b5e673",
+                "border": "black"
+            }
+        }
+    },
+    "DEI": {
+        "color": {
+            "background": "#b30189",
+            "border": "black",
+            "highlight": {
+                "background": "#e673cb",
+                "border": "black"
+            }
+        }
+    },
+    "DEVIS": {
+        "color": {
+            "background": "#b36b01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6b773",
+                "border": "black"
+            }
+        }
+    },
+    "DM": {
+        "color": {
+            "background": "#01b305",
+            "border": "black",
+            "highlight": {
+                "background": "#73e675",
+                "border": "black"
+            }
+        }
+    },
+    "DRAMA": {
+        "color": {
+            "background": "#b31901",
+            "border": "black",
+            "highlight": {
+                "background": "#e68273",
+                "border": "black"
+            }
+        }
+    },
+    "DUTCH": {
+        "color": {
+            "background": "#81b301",
+            "border": "black",
+            "highlight": {
+                "background": "#c5e673",
+                "border": "black"
+            }
+        }
+    },
+    "EARTH": {
+        "color": {
+            "background": "#01b379",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6c1",
+                "border": "black"
+            }
+        }
+    },
+    "EASIA": {
+        "color": {
+            "background": "#0159b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73ace6",
+                "border": "black"
+            }
+        }
+    },
+    "ECDEV": {
+        "color": {
+            "background": "#b3018f",
+            "border": "black",
+            "highlight": {
+                "background": "#e673ce",
+                "border": "black"
+            }
+        }
+    },
+    "ECE": {
+        "color": {
+            "background": "#01b32a",
+            "border": "black",
+            "highlight": {
+                "background": "#73e68d",
+                "border": "black"
+            }
+        }
+    },
+    "ECON": {
+        "color": {
+            "background": "#b39c01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6d773",
+                "border": "black"
+            }
+        }
+    },
+    "EFAS": {
+        "color": {
+            "background": "#01b37e",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6c4",
+                "border": "black"
+            }
+        }
+    },
+    "ELE": {
+        "color": {
+            "background": "#b3aa01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6e073",
+                "border": "black"
+            }
+        }
+    },
+    "ELPE": {
+        "color": {
+            "background": "#b301ad",
+            "border": "black",
+            "highlight": {
+                "background": "#e673e2",
+                "border": "black"
+            }
+        }
+    },
+    "EMLS": {
+        "color": {
+            "background": "#5db301",
+            "border": "black",
+            "highlight": {
+                "background": "#afe673",
+                "border": "black"
+            }
+        }
+    },
+    "ENBUS": {
+        "color": {
+            "background": "#01b343",
+            "border": "black",
+            "highlight": {
+                "background": "#73e69d",
+                "border": "black"
+            }
+        }
+    },
+    "ENGL": {
+        "color": {
+            "background": "#b30148",
+            "border": "black",
+            "highlight": {
+                "background": "#e673a1",
+                "border": "black"
+            }
+        }
+    },
+    "ENTR": {
+        "color": {
+            "background": "#01b365",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6b3",
+                "border": "black"
+            }
+        }
+    },
+    "ENVE": {
+        "color": {
+            "background": "#b30161",
+            "border": "black",
+            "highlight": {
+                "background": "#e673b1",
+                "border": "black"
+            }
+        }
+    },
+    "ENVS": {
+        "color": {
+            "background": "#8ab301",
+            "border": "black",
+            "highlight": {
+                "background": "#cbe673",
+                "border": "black"
+            }
+        }
+    },
+    "ERS": {
+        "color": {
+            "background": "#b33e01",
+            "border": "black",
+            "highlight": {
+                "background": "#e69a73",
+                "border": "black"
+            }
+        }
+    },
+    "ESL": {
+        "color": {
+            "background": "#5a01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#ac73e6",
+                "border": "black"
+            }
+        }
+    },
+    "EVSY": {
+        "color": {
+            "background": "#013db3",
+            "border": "black",
+            "highlight": {
+                "background": "#7399e6",
+                "border": "black"
+            }
+        }
+    },
+    "FILM": {
+        "color": {
+            "background": "#5bb301",
+            "border": "black",
+            "highlight": {
+                "background": "#ade673",
+                "border": "black"
+            }
+        }
+    },
+    "FINAN": {
+        "color": {
+            "background": "#01b3aa",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6e0",
+                "border": "black"
+            }
+        }
+    },
+    "FINE": {
+        "color": {
+            "background": "#b36201",
+            "border": "black",
+            "highlight": {
+                "background": "#e6b173",
+                "border": "black"
+            }
+        }
+    },
+    "FR": {
+        "color": {
+            "background": "#94b301",
+            "border": "black",
+            "highlight": {
+                "background": "#d2e673",
+                "border": "black"
+            }
+        }
+    },
+    "FRCS": {
+        "color": {
+            "background": "#9b01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d773e6",
+                "border": "black"
+            }
+        }
+    },
+    "GBDA": {
+        "color": {
+            "background": "#01b396",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6d3",
+                "border": "black"
+            }
+        }
+    },
+    "GEMCC": {
+        "color": {
+            "background": "#b32401",
+            "border": "black",
+            "highlight": {
+                "background": "#e68973",
+                "border": "black"
+            }
+        }
+    },
+    "GENE": {
+        "color": {
+            "background": "#b30139",
+            "border": "black",
+            "highlight": {
+                "background": "#e67397",
+                "border": "black"
+            }
+        }
+    },
+    "GEOE": {
+        "color": {
+            "background": "#54b301",
+            "border": "black",
+            "highlight": {
+                "background": "#a8e673",
+                "border": "black"
+            }
+        }
+    },
+    "GEOG": {
+        "color": {
+            "background": "#b35301",
+            "border": "black",
+            "highlight": {
+                "background": "#e6a873",
+                "border": "black"
+            }
+        }
+    },
+    "GEOL": {
+        "color": {
+            "background": "#92b301",
+            "border": "black",
+            "highlight": {
+                "background": "#d1e673",
+                "border": "black"
+            }
+        }
+    },
+    "GER": {
+        "color": {
+            "background": "#01b309",
+            "border": "black",
+            "highlight": {
+                "background": "#73e677",
+                "border": "black"
+            }
+        }
+    },
+    "GERON": {
+        "color": {
+            "background": "#3cb301",
+            "border": "black",
+            "highlight": {
+                "background": "#99e673",
+                "border": "black"
+            }
+        }
+    },
+    "GGOV": {
+        "color": {
+            "background": "#b3011b",
+            "border": "black",
+            "highlight": {
+                "background": "#e67383",
+                "border": "black"
+            }
+        }
+    },
+    "GLOBAL": {
+        "color": {
+            "background": "#01b306",
+            "border": "black",
+            "highlight": {
+                "background": "#73e676",
+                "border": "black"
+            }
+        }
+    },
+    "GRAD": {
+        "color": {
+            "background": "#01b337",
+            "border": "black",
+            "highlight": {
+                "background": "#73e695",
+                "border": "black"
+            }
+        }
+    },
+    "GRK": {
+        "color": {
+            "background": "#5601b3",
+            "border": "black",
+            "highlight": {
+                "background": "#aa73e6",
+                "border": "black"
+            }
+        }
+    },
+    "GS": {
+        "color": {
+            "background": "#1cb301",
+            "border": "black",
+            "highlight": {
+                "background": "#84e673",
+                "border": "black"
+            }
+        }
+    },
+    "HBIO": {
+        "color": {
+            "background": "#b0b301",
+            "border": "black",
+            "highlight": {
+                "background": "#e4e673",
+                "border": "black"
+            }
+        }
+    },
+    "HEBRW": {
+        "color": {
+            "background": "#b301a1",
+            "border": "black",
+            "highlight": {
+                "background": "#e673db",
+                "border": "black"
+            }
+        }
+    },
+    "HIST": {
+        "color": {
+            "background": "#b30153",
+            "border": "black",
+            "highlight": {
+                "background": "#e673a7",
+                "border": "black"
+            }
+        }
+    },
+    "HLTH": {
+        "color": {
+            "background": "#b301a8",
+            "border": "black",
+            "highlight": {
+                "background": "#e673df",
+                "border": "black"
+            }
+        }
+    },
+    "HRCS": {
+        "color": {
+            "background": "#01b386",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6c9",
+                "border": "black"
+            }
+        }
+    },
+    "HRM": {
+        "color": {
+            "background": "#01b34c",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6a3",
+                "border": "black"
+            }
+        }
+    },
+    "HS": {
+        "color": {
+            "background": "#01b30d",
+            "border": "black",
+            "highlight": {
+                "background": "#73e67a",
+                "border": "black"
+            }
+        }
+    },
+    "HSG": {
+        "color": {
+            "background": "#07b301",
+            "border": "black",
+            "highlight": {
+                "background": "#77e673",
+                "border": "black"
+            }
+        }
+    },
+    "HUMSC": {
+        "color": {
+            "background": "#8bb301",
+            "border": "black",
+            "highlight": {
+                "background": "#cce673",
+                "border": "black"
+            }
+        }
+    },
+    "HUNGN": {
+        "color": {
+            "background": "#017bb3",
+            "border": "black",
+            "highlight": {
+                "background": "#73c2e6",
+                "border": "black"
+            }
+        }
+    },
+    "INDEV": {
+        "color": {
+            "background": "#b34e01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6a573",
+                "border": "black"
+            }
+        }
+    },
+    "INDG": {
+        "color": {
+            "background": "#b32001",
+            "border": "black",
+            "highlight": {
+                "background": "#e68773",
+                "border": "black"
+            }
+        }
+    },
+    "INTEG": {
+        "color": {
+            "background": "#03b301",
+            "border": "black",
+            "highlight": {
+                "background": "#74e673",
+                "border": "black"
+            }
+        }
+    },
+    "INTERN": {
+        "color": {
+            "background": "#2bb301",
+            "border": "black",
+            "highlight": {
+                "background": "#8ee673",
+                "border": "black"
+            }
+        }
+    },
+    "INTST": {
+        "color": {
+            "background": "#5bb301",
+            "border": "black",
+            "highlight": {
+                "background": "#ade673",
+                "border": "black"
+            }
+        }
+    },
+    "INTTS": {
+        "color": {
+            "background": "#9501b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d373e6",
+                "border": "black"
+            }
+        }
+    },
+    "IS": {
+        "color": {
+            "background": "#1801b3",
+            "border": "black",
+            "highlight": {
+                "background": "#8173e6",
+                "border": "black"
+            }
+        }
+    },
+    "ISS": {
+        "color": {
+            "background": "#b34701",
+            "border": "black",
+            "highlight": {
+                "background": "#e6a073",
+                "border": "black"
+            }
+        }
+    },
+    "ITAL": {
+        "color": {
+            "background": "#b30167",
+            "border": "black",
+            "highlight": {
+                "background": "#e673b5",
+                "border": "black"
+            }
+        }
+    },
+    "ITALST": {
+        "color": {
+            "background": "#b35601",
+            "border": "black",
+            "highlight": {
+                "background": "#e6a973",
+                "border": "black"
+            }
+        }
+    },
+    "JAPAN": {
+        "color": {
+            "background": "#9101b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d073e6",
+                "border": "black"
+            }
+        }
+    },
+    "JS": {
+        "color": {
+            "background": "#b30122",
+            "border": "black",
+            "highlight": {
+                "background": "#e67388",
+                "border": "black"
+            }
+        }
+    },
+    "KIN": {
+        "color": {
+            "background": "#7101b3",
+            "border": "black",
+            "highlight": {
+                "background": "#bb73e6",
+                "border": "black"
+            }
+        }
+    },
+    "KOREA": {
+        "color": {
+            "background": "#01b344",
+            "border": "black",
+            "highlight": {
+                "background": "#73e69e",
+                "border": "black"
+            }
+        }
+    },
+    "KPE": {
+        "color": {
+            "background": "#5401b3",
+            "border": "black",
+            "highlight": {
+                "background": "#a973e6",
+                "border": "black"
+            }
+        }
+    },
+    "LANG": {
+        "color": {
+            "background": "#b30701",
+            "border": "black",
+            "highlight": {
+                "background": "#e67673",
+                "border": "black"
+            }
+        }
+    },
+    "LAT": {
+        "color": {
+            "background": "#b30197",
+            "border": "black",
+            "highlight": {
+                "background": "#e673d4",
+                "border": "black"
+            }
+        }
+    },
+    "LATAM": {
+        "color": {
+            "background": "#b33701",
+            "border": "black",
+            "highlight": {
+                "background": "#e69573",
+                "border": "black"
+            }
+        }
+    },
+    "LED": {
+        "color": {
+            "background": "#55b301",
+            "border": "black",
+            "highlight": {
+                "background": "#a9e673",
+                "border": "black"
+            }
+        }
+    },
+    "LS": {
+        "color": {
+            "background": "#019fb3",
+            "border": "black",
+            "highlight": {
+                "background": "#73d9e6",
+                "border": "black"
+            }
+        }
+    },
+    "LSC": {
+        "color": {
+            "background": "#019bb3",
+            "border": "black",
+            "highlight": {
+                "background": "#73d7e6",
+                "border": "black"
+            }
+        }
+    },
+    "MATBUS": {
+        "color": {
+            "background": "#65b301",
+            "border": "black",
+            "highlight": {
+                "background": "#b3e673",
+                "border": "black"
+            }
+        }
+    },
+    "MATH": {
+        "color": {
+            "background": "#b34b01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6a273",
+                "border": "black"
+            }
+        }
+    },
+    "ME": {
+        "color": {
+            "background": "#01b364",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6b3",
+                "border": "black"
+            }
+        }
+    },
+    "MEDST": {
+        "color": {
+            "background": "#b301a5",
+            "border": "black",
+            "highlight": {
+                "background": "#e673dd",
+                "border": "black"
+            }
+        }
+    },
+    "MEDVL": {
+        "color": {
+            "background": "#0102b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7373e6",
+                "border": "black"
+            }
+        }
+    },
+    "MENV": {
+        "color": {
+            "background": "#01aab3",
+            "border": "black",
+            "highlight": {
+                "background": "#73e0e6",
+                "border": "black"
+            }
+        }
+    },
+    "MES": {
+        "color": {
+            "background": "#b301a3",
+            "border": "black",
+            "highlight": {
+                "background": "#e673dc",
+                "border": "black"
+            }
+        }
+    },
+    "MGMT": {
+        "color": {
+            "background": "#0132b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7392e6",
+                "border": "black"
+            }
+        }
+    },
+    "MI": {
+        "color": {
+            "background": "#2701b3",
+            "border": "black",
+            "highlight": {
+                "background": "#8b73e6",
+                "border": "black"
+            }
+        }
+    },
+    "MISC": {
+        "color": {
+            "background": "#b30161",
+            "border": "black",
+            "highlight": {
+                "background": "#e673b1",
+                "border": "black"
+            }
+        }
+    },
+    "MNS": {
+        "color": {
+            "background": "#a5b301",
+            "border": "black",
+            "highlight": {
+                "background": "#dde673",
+                "border": "black"
+            }
+        }
+    },
+    "MSCI": {
+        "color": {
+            "background": "#019fb3",
+            "border": "black",
+            "highlight": {
+                "background": "#73d9e6",
+                "border": "black"
+            }
+        }
+    },
+    "MTE": {
+        "color": {
+            "background": "#73b301",
+            "border": "black",
+            "highlight": {
+                "background": "#bce673",
+                "border": "black"
+            }
+        }
+    },
+    "MTHEL": {
+        "color": {
+            "background": "#b3015d",
+            "border": "black",
+            "highlight": {
+                "background": "#e673ae",
+                "border": "black"
+            }
+        }
+    },
+    "MUSIC": {
+        "color": {
+            "background": "#b30196",
+            "border": "black",
+            "highlight": {
+                "background": "#e673d4",
+                "border": "black"
+            }
+        }
+    },
+    "NANO": {
+        "color": {
+            "background": "#b30c01",
+            "border": "black",
+            "highlight": {
+                "background": "#e67a73",
+                "border": "black"
+            }
+        }
+    },
+    "NATST": {
+        "color": {
+            "background": "#06b301",
+            "border": "black",
+            "highlight": {
+                "background": "#76e673",
+                "border": "black"
+            }
+        }
+    },
+    "NE": {
+        "color": {
+            "background": "#6801b3",
+            "border": "black",
+            "highlight": {
+                "background": "#b673e6",
+                "border": "black"
+            }
+        }
+    },
+    "NES": {
+        "color": {
+            "background": "#b38201",
+            "border": "black",
+            "highlight": {
+                "background": "#e6c673",
+                "border": "black"
+            }
+        }
+    },
+    "OPTOM": {
+        "color": {
+            "background": "#3001b3",
+            "border": "black",
+            "highlight": {
+                "background": "#9173e6",
+                "border": "black"
+            }
+        }
+    },
+    "ORLD": {
+        "color": {
+            "background": "#b3a901",
+            "border": "black",
+            "highlight": {
+                "background": "#e6df73",
+                "border": "black"
+            }
+        }
+    },
+    "PACS": {
+        "color": {
+            "background": "#01b327",
+            "border": "black",
+            "highlight": {
+                "background": "#73e68b",
+                "border": "black"
+            }
+        }
+    },
+    "PAS": {
+        "color": {
+            "background": "#80b301",
+            "border": "black",
+            "highlight": {
+                "background": "#c5e673",
+                "border": "black"
+            }
+        }
+    },
+    "PD": {
+        "color": {
+            "background": "#5001b3",
+            "border": "black",
+            "highlight": {
+                "background": "#a573e6",
+                "border": "black"
+            }
+        }
+    },
+    "PDARCH": {
+        "color": {
+            "background": "#6cb301",
+            "border": "black",
+            "highlight": {
+                "background": "#b8e673",
+                "border": "black"
+            }
+        }
+    },
+    "PDENG": {
+        "color": {
+            "background": "#b31d01",
+            "border": "black",
+            "highlight": {
+                "background": "#e68573",
+                "border": "black"
+            }
+        }
+    },
+    "PDPHRM": {
+        "color": {
+            "background": "#b3012e",
+            "border": "black",
+            "highlight": {
+                "background": "#e67390",
+                "border": "black"
+            }
+        }
+    },
+    "PED": {
+        "color": {
+            "background": "#7ab301",
+            "border": "black",
+            "highlight": {
+                "background": "#c1e673",
+                "border": "black"
+            }
+        }
+    },
+    "PERST": {
+        "color": {
+            "background": "#9f01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d973e6",
+                "border": "black"
+            }
+        }
+    },
+    "PHARM": {
+        "color": {
+            "background": "#0114b3",
+            "border": "black",
+            "highlight": {
+                "background": "#737fe6",
+                "border": "black"
+            }
+        }
+    },
+    "PHIL": {
+        "color": {
+            "background": "#9bb301",
+            "border": "black",
+            "highlight": {
+                "background": "#d7e673",
+                "border": "black"
+            }
+        }
+    },
+    "PHS": {
+        "color": {
+            "background": "#016eb3",
+            "border": "black",
+            "highlight": {
+                "background": "#73b9e6",
+                "border": "black"
+            }
+        }
+    },
+    "PHYS": {
+        "color": {
+            "background": "#012db3",
+            "border": "black",
+            "highlight": {
+                "background": "#738fe6",
+                "border": "black"
+            }
+        }
+    },
+    "PLAN": {
+        "color": {
+            "background": "#b3012d",
+            "border": "black",
+            "highlight": {
+                "background": "#e6738f",
+                "border": "black"
+            }
+        }
+    },
+    "PLCG": {
+        "color": {
+            "background": "#b33101",
+            "border": "black",
+            "highlight": {
+                "background": "#e69273",
+                "border": "black"
+            }
+        }
+    },
+    "PMATH": {
+        "color": {
+            "background": "#0178b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73c0e6",
+                "border": "black"
+            }
+        }
+    },
+    "POLSH": {
+        "color": {
+            "background": "#49b301",
+            "border": "black",
+            "highlight": {
+                "background": "#a1e673",
+                "border": "black"
+            }
+        }
+    },
+    "PORT": {
+        "color": {
+            "background": "#5001b3",
+            "border": "black",
+            "highlight": {
+                "background": "#a673e6",
+                "border": "black"
+            }
+        }
+    },
+    "PS": {
+        "color": {
+            "background": "#0173b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73bde6",
+                "border": "black"
+            }
+        }
+    },
+    "PSCI": {
+        "color": {
+            "background": "#0db301",
+            "border": "black",
+            "highlight": {
+                "background": "#7be673",
+                "border": "black"
+            }
+        }
+    },
+    "PSYCH": {
+        "color": {
+            "background": "#0122b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7388e6",
+                "border": "black"
+            }
+        }
+    },
+    "QIC": {
+        "color": {
+            "background": "#3c01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#9973e6",
+                "border": "black"
+            }
+        }
+    },
+    "REC": {
+        "color": {
+            "background": "#01b325",
+            "border": "black",
+            "highlight": {
+                "background": "#73e68a",
+                "border": "black"
+            }
+        }
+    },
+    "REES": {
+        "color": {
+            "background": "#01b325",
+            "border": "black",
+            "highlight": {
+                "background": "#73e68a",
+                "border": "black"
+            }
+        }
+    },
+    "RELC": {
+        "color": {
+            "background": "#0175b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73bee6",
+                "border": "black"
+            }
+        }
+    },
+    "RS": {
+        "color": {
+            "background": "#5801b3",
+            "border": "black",
+            "highlight": {
+                "background": "#ab73e6",
+                "border": "black"
+            }
+        }
+    },
+    "RSCH": {
+        "color": {
+            "background": "#b3012c",
+            "border": "black",
+            "highlight": {
+                "background": "#e6738e",
+                "border": "black"
+            }
+        }
+    },
+    "RUSS": {
+        "color": {
+            "background": "#010db3",
+            "border": "black",
+            "highlight": {
+                "background": "#737ae6",
+                "border": "black"
+            }
+        }
+    },
+    "SCBUS": {
+        "color": {
+            "background": "#19b301",
+            "border": "black",
+            "highlight": {
+                "background": "#82e673",
+                "border": "black"
+            }
+        }
+    },
+    "SCI": {
+        "color": {
+            "background": "#b31f01",
+            "border": "black",
+            "highlight": {
+                "background": "#e68673",
+                "border": "black"
+            }
+        }
+    },
+    "SDS": {
+        "color": {
+            "background": "#01b34e",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6a5",
+                "border": "black"
+            }
+        }
+    },
+    "SE": {
+        "color": {
+            "background": "#ad01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#e273e6",
+                "border": "black"
+            }
+        }
+    },
+    "SEQ": {
+        "color": {
+            "background": "#b37801",
+            "border": "black",
+            "highlight": {
+                "background": "#e6c073",
+                "border": "black"
+            }
+        }
+    },
+    "SI": {
+        "color": {
+            "background": "#5c01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#ad73e6",
+                "border": "black"
+            }
+        }
+    },
+    "SIPAR": {
+        "color": {
+            "background": "#19b301",
+            "border": "black",
+            "highlight": {
+                "background": "#82e673",
+                "border": "black"
+            }
+        }
+    },
+    "SMF": {
+        "color": {
+            "background": "#2e01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#9073e6",
+                "border": "black"
+            }
+        }
+    },
+    "SOC": {
+        "color": {
+            "background": "#b301ae",
+            "border": "black",
+            "highlight": {
+                "background": "#e673e3",
+                "border": "black"
+            }
+        }
+    },
+    "SOCE": {
+        "color": {
+            "background": "#0152b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73a7e6",
+                "border": "black"
+            }
+        }
+    },
+    "SOCIN": {
+        "color": {
+            "background": "#b3a301",
+            "border": "black",
+            "highlight": {
+                "background": "#e6dc73",
+                "border": "black"
+            }
+        }
+    },
+    "SOCWK": {
+        "color": {
+            "background": "#01b353",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6a8",
+                "border": "black"
+            }
+        }
+    },
+    "SOCWL": {
+        "color": {
+            "background": "#01b35e",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6af",
+                "border": "black"
+            }
+        }
+    },
+    "SPAN": {
+        "color": {
+            "background": "#1301b3",
+            "border": "black",
+            "highlight": {
+                "background": "#7e73e6",
+                "border": "black"
+            }
+        }
+    },
+    "SPCOM": {
+        "color": {
+            "background": "#01b35c",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6ad",
+                "border": "black"
+            }
+        }
+    },
+    "SPD": {
+        "color": {
+            "background": "#0199b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73d5e6",
+                "border": "black"
+            }
+        }
+    },
+    "STAT": {
+        "color": {
+            "background": "#b30194",
+            "border": "black",
+            "highlight": {
+                "background": "#e673d2",
+                "border": "black"
+            }
+        }
+    },
+    "STV": {
+        "color": {
+            "background": "#b3010f",
+            "border": "black",
+            "highlight": {
+                "background": "#e6737c",
+                "border": "black"
+            }
+        }
+    },
+    "SUSM": {
+        "color": {
+            "background": "#0169b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73b6e6",
+                "border": "black"
+            }
+        }
+    },
+    "SVENT": {
+        "color": {
+            "background": "#8cb301",
+            "border": "black",
+            "highlight": {
+                "background": "#cde673",
+                "border": "black"
+            }
+        }
+    },
+    "SWK": {
+        "color": {
+            "background": "#6c01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#b873e6",
+                "border": "black"
+            }
+        }
+    },
+    "SWREN": {
+        "color": {
+            "background": "#b30701",
+            "border": "black",
+            "highlight": {
+                "background": "#e67673",
+                "border": "black"
+            }
+        }
+    },
+    "SYDE": {
+        "color": {
+            "background": "#b30192",
+            "border": "black",
+            "highlight": {
+                "background": "#e673d1",
+                "border": "black"
+            }
+        }
+    },
+    "TAX": {
+        "color": {
+            "background": "#77b301",
+            "border": "black",
+            "highlight": {
+                "background": "#bfe673",
+                "border": "black"
+            }
+        }
+    },
+    "THPERF": {
+        "color": {
+            "background": "#01b330",
+            "border": "black",
+            "highlight": {
+                "background": "#73e691",
+                "border": "black"
+            }
+        }
+    },
+    "THTRE": {
+        "color": {
+            "background": "#015eb3",
+            "border": "black",
+            "highlight": {
+                "background": "#73afe6",
+                "border": "black"
+            }
+        }
+    },
+    "TN": {
+        "color": {
+            "background": "#01b33f",
+            "border": "black",
+            "highlight": {
+                "background": "#73e69b",
+                "border": "black"
+            }
+        }
+    },
+    "TOUR": {
+        "color": {
+            "background": "#4e01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#a573e6",
+                "border": "black"
+            }
+        }
+    },
+    "TPM": {
+        "color": {
+            "background": "#9b01b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d773e6",
+                "border": "black"
+            }
+        }
+    },
+    "TPPE": {
+        "color": {
+            "background": "#01b340",
+            "border": "black",
+            "highlight": {
+                "background": "#73e69b",
+                "border": "black"
+            }
+        }
+    },
+    "TS": {
+        "color": {
+            "background": "#b3012a",
+            "border": "black",
+            "highlight": {
+                "background": "#e6738d",
+                "border": "black"
+            }
+        }
+    },
+    "UKRAN": {
+        "color": {
+            "background": "#019fb3",
+            "border": "black",
+            "highlight": {
+                "background": "#73d9e6",
+                "border": "black"
+            }
+        }
+    },
+    "UN": {
+        "color": {
+            "background": "#b3016d",
+            "border": "black",
+            "highlight": {
+                "background": "#e673b8",
+                "border": "black"
+            }
+        }
+    },
+    "UNIV": {
+        "color": {
+            "background": "#b38601",
+            "border": "black",
+            "highlight": {
+                "background": "#e6c973",
+                "border": "black"
+            }
+        }
+    },
+    "URBAN": {
+        "color": {
+            "background": "#014cb3",
+            "border": "black",
+            "highlight": {
+                "background": "#73a3e6",
+                "border": "black"
+            }
+        }
+    },
+    "UU": {
+        "color": {
+            "background": "#b35801",
+            "border": "black",
+            "highlight": {
+                "background": "#e6ab73",
+                "border": "black"
+            }
+        }
+    },
+    "UWNC": {
+        "color": {
+            "background": "#b37401",
+            "border": "black",
+            "highlight": {
+                "background": "#e6bd73",
+                "border": "black"
+            }
+        }
+    },
+    "VCULT": {
+        "color": {
+            "background": "#01b30a",
+            "border": "black",
+            "highlight": {
+                "background": "#73e678",
+                "border": "black"
+            }
+        }
+    },
+    "WATER": {
+        "color": {
+            "background": "#01b306",
+            "border": "black",
+            "highlight": {
+                "background": "#73e676",
+                "border": "black"
+            }
+        }
+    },
+    "WHMIS": {
+        "color": {
+            "background": "#01b346",
+            "border": "black",
+            "highlight": {
+                "background": "#73e69f",
+                "border": "black"
+            }
+        }
+    },
+    "WKRPT": {
+        "color": {
+            "background": "#0195b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73d3e6",
+                "border": "black"
+            }
+        }
+    },
+    "WS": {
+        "color": {
+            "background": "#b301a1",
+            "border": "black",
+            "highlight": {
+                "background": "#e673db",
+                "border": "black"
+            }
+        }
+    },
+    "ASL": {
+        "color": {
+            "background": "#57b301",
+            "border": "black",
+            "highlight": {
+                "background": "#aae673",
+                "border": "black"
+            }
+        }
+    },
+    "CI": {
+        "color": {
+            "background": "#01a4b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73dce6",
+                "border": "black"
+            }
+        }
+    },
+    "GESC": {
+        "color": {
+            "background": "#b36f01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6ba73",
+                "border": "black"
+            }
+        }
+    },
+    "GSJ": {
+        "color": {
+            "background": "#9501b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d273e6",
+                "border": "black"
+            }
+        }
+    },
+    "HESC": {
+        "color": {
+            "background": "#9801b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d473e6",
+                "border": "black"
+            }
+        }
+    },
+    "HUMN": {
+        "color": {
+            "background": "#01b399",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6d5",
+                "border": "black"
+            }
+        }
+    },
+    "IDAT": {
+        "color": {
+            "background": "#9901b3",
+            "border": "black",
+            "highlight": {
+                "background": "#d573e6",
+                "border": "black"
+            }
+        }
+    },
+    "MENN": {
+        "color": {
+            "background": "#b39101",
+            "border": "black",
+            "highlight": {
+                "background": "#e6d073",
+                "border": "black"
+            }
+        }
+    },
+    "NAST": {
+        "color": {
+            "background": "#b32301",
+            "border": "black",
+            "highlight": {
+                "background": "#e68973",
+                "border": "black"
+            }
+        }
+    },
+    "SCCOM": {
+        "color": {
+            "background": "#77b301",
+            "border": "black",
+            "highlight": {
+                "background": "#bfe673",
+                "border": "black"
+            }
+        }
+    },
+    "CC": {
+        "color": {
+            "background": "#b3011d",
+            "border": "black",
+            "highlight": {
+                "background": "#e67384",
+                "border": "black"
+            }
+        }
+    },
+    "HRTS": {
+        "color": {
+            "background": "#7801b3",
+            "border": "black",
+            "highlight": {
+                "background": "#c073e6",
+                "border": "black"
+            }
+        }
+    },
+    "OLRD": {
+        "color": {
+            "background": "#2801b3",
+            "border": "black",
+            "highlight": {
+                "background": "#8c73e6",
+                "border": "black"
+            }
+        }
+    },
+    "EDMI": {
+        "color": {
+            "background": "#b34f01",
+            "border": "black",
+            "highlight": {
+                "background": "#e6a573",
+                "border": "black"
+            }
+        }
+    },
+    "MOHAWK": {
+        "color": {
+            "background": "#01b375",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6be",
+                "border": "black"
+            }
+        }
+    },
+    "UX": {
+        "color": {
+            "background": "#b3010a",
+            "border": "black",
+            "highlight": {
+                "background": "#e67379",
+                "border": "black"
+            }
+        }
+    },
+    "ARABIC": {
+        "color": {
+            "background": "#b30111",
+            "border": "black",
+            "highlight": {
+                "background": "#e6737d",
+                "border": "black"
+            }
+        }
+    },
+    "INDS": {
+        "color": {
+            "background": "#0148b3",
+            "border": "black",
+            "highlight": {
+                "background": "#73a1e6",
+                "border": "black"
+            }
+        }
+    },
+    "DATSC": {
+        "color": {
+            "background": "#01b354",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6a8",
+                "border": "black"
+            }
+        }
+    },
+    "GC": {
+        "color": {
+            "background": "#9bb301",
+            "border": "black",
+            "highlight": {
+                "background": "#d7e673",
+                "border": "black"
+            }
+        }
+    },
+    "CFM": {
+        "color": {
+            "background": "#b30601",
+            "border": "black",
+            "highlight": {
+                "background": "#e67673",
+                "border": "black"
+            }
+        }
+    },
+    "INDENT": {
+        "color": {
+            "background": "#01b360",
+            "border": "black",
+            "highlight": {
+                "background": "#73e6b0",
+                "border": "black"
+            }
+        }
+    },
+    "SFM": {
+        "color": {
+            "background": "#8701b3",
+            "border": "black",
+            "highlight": {
+                "background": "#c973e6",
+                "border": "black"
+            }
+        }
+    },
+    "BLKST": {
+        "color": {
+            "background": "#b31101",
+            "border": "black",
+            "highlight": {
+                "background": "#e67d73",
+                "border": "black"
+            }
+        }
+    },
+    "MLST": {
+        "color": {
+            "background": "#3301b3",
+            "border": "black",
+            "highlight": {
+                "background": "#9373e6",
+                "border": "black"
+            }
+        }
+    }
+}

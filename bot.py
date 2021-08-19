@@ -23,9 +23,22 @@ NO_IN_PAGE = 5
 
 API_URL = 'https://openapi.data.uwaterloo.ca/v3'
 
+# get color config from json file
+color_config = json.load(open('color_config.json'))
+
+
 # connect to mongodb database
 client = MongoClient(MONGO_URL)
 db = client['waterloo']['courses']
+
+# convert rgb string into rgb tuple
+def convert_rgb_to_tuple(rgb):
+    rgb_string = rgb[1:]
+    if len(rgb_string) == 6:
+        return (int(rgb_string[0:2], 16), int(rgb_string[2:4], 16), int(rgb_string[4:6], 16))
+    else:
+        return (0, 0, 0)
+
 
 # get class info 
 def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
@@ -49,7 +62,6 @@ def get_class_section_info(subjectCode, catalogNumber, classNo, term = CURRENT_T
             return x
     
     return 'Class does not exist'
-
 
 # get value of tag in command
 def get_tag_value(tag, command, default=None):
@@ -82,6 +94,10 @@ async def get_class_list(ctx):
     page = get_tag_value('-p', content, 1)
     class_no = get_tag_value('-c', content, None)
 
+    # get color of embed
+    color = convert_rgb_to_tuple(color_config[subjectCode]['color']['background'])
+    disc_color = discord.Color.from_rgb(color[0], color[1], color[2])
+
     # get class info
     class_info = get_class_info(subjectCode, catalogNumber, term)
     # if class is not valid, return error response 
@@ -95,7 +111,7 @@ async def get_class_list(ctx):
         # create response
         response = discord.Embed(
             title = class_info['subjectCode'] + ' ' + class_info['catalogNumber'] + ' - ' + class_info['title'],
-            color = discord.Color.from_rgb(22, 219, 117),
+            color = disc_color,
             description = class_info['description']
         )
 
@@ -105,7 +121,7 @@ async def get_class_list(ctx):
             value = {
                 'UG': 'Undergraduate',
                 'G': 'Graduate'
-            }[class_info['associatedAcademicCareer']]
+            }[class_info['associatedAcademicCareer']],
         ) 
         # add course units
         response.add_field(
