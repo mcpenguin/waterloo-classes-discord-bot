@@ -28,7 +28,6 @@ API_URL = 'https://openapi.data.uwaterloo.ca/v3'
 # get color config from json file
 color_config = json.load(open('color_config.json'))
 
-
 # connect to mongodb database
 client = MongoClient(MONGO_URL)
 db = client['waterloo']['courses']
@@ -45,7 +44,7 @@ def convert_rgb_to_tuple(rgb):
 def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
     
     # fetch class info from database
-    class_info = db.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber, 'term': term})
+    class_info = db.find({'subjectCode': subjectCode, 'catalogNumber': catalogNumber, 'term': term})
     
     db_class_info = None
     for x in class_info:
@@ -190,6 +189,7 @@ async def get_class_list(ctx):
     subjectCode = params[0].upper()
     catalogNumber = str(params[1]).upper()
 
+    # get tag values (if they exist)
     term = get_tag_value('-t', content, CURRENT_TERM)
     page = get_tag_value('-p', content, 1)
     class_no = get_tag_value('-c', content, None)
@@ -210,7 +210,7 @@ async def get_class_list(ctx):
 
         # create response
         response = discord.Embed(
-            title = class_info['subjectCode'] + ' ' + class_info['catalogNumber'] + ' - ' + class_info['title'],
+            title = f"{class_info['subjectCode']} {class_info['catalogNumber']} - {class_info['title']} [{class_info['termName']}]",
             color = disc_color,
             description = class_info['description']
         )
@@ -267,7 +267,7 @@ async def get_class_list(ctx):
 
         # add last updated
         response.set_footer(
-            text = 'Last updated: ' + class_info['dateUpdated'] + ' ' * 30
+            text = 'Last updated: ' + class_info['dateUpdated'] + ' EST'
         )
 
     # if class number is specified, get the specific class info
@@ -329,7 +329,7 @@ async def get_class_list(ctx):
 
         # add last updated
         response.set_footer(
-            text = 'Last updated: ' + class_info['dateUpdated'] + ' ' * 30
+            text = 'Last updated: ' + class_info['dateUpdated'] + ' EST'
         )
 
     
