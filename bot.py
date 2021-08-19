@@ -5,6 +5,9 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from tabulate import tabulate
 
+import requests
+import json
+
 from pymongo import MongoClient
 
 load_dotenv()
@@ -13,9 +16,12 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 # GUILD = os.getenv('DISCORD_GUILD')
 MONGO_URL = os.getenv('MONGO_URL')
+API_KEY = os.getenv('API_KEY')
 
 CURRENT_TERM = '1219'
 NO_IN_PAGE = 5
+
+API_URL = 'https://openapi.data.uwaterloo.ca/v3'
 
 # connect to mongodb database
 client = MongoClient(MONGO_URL)
@@ -24,12 +30,16 @@ db = client['waterloo']['courses']
 # get class info 
 def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
     
+    # fetch class info from database
     class_info = db.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber, 'term': term})
     
-    for x in class_info:
-        return x
+    if class_info.count() == 0:
+        return 'Class does not exist'
 
-    return 'Course does not exist'
+    # if class does exist, fetch additional class info using the UW API
+    r = requests.get(f"{API_URL}/Courses/{term}/{subjectCode}/{catalogNumber}", headers={'X-API-KEY': API_KEY})
+    # return the combined info
+    return {**class_info[0], **r.json()[0]}
 
 # get class number 
 def get_class_section_info(subjectCode, catalogNumber, classNo, term = CURRENT_TERM):
@@ -86,6 +96,7 @@ async def get_class_list(ctx):
         response = discord.Embed(
             title = class_info['subjectCode'] + ' ' + class_info['catalogNumber'] + ' - ' + class_info['title'],
             color = discord.Color.from_rgb(22, 219, 117),
+            description = class_info['description']
         )
 
         # add course level
@@ -93,15 +104,21 @@ async def get_class_list(ctx):
             name = 'Level',
             value = {
                 'UG': 'Undergraduate',
-                'G': 'Graduate',
-            }[class_info['level']],
-            inline = True
+                'G': 'Graduate'
+            }[class_info['associatedAcademicCareer']]
         ) 
         # add course units
         response.add_field(
             name = 'Units',
             value = class_info['units'],
             inline = True
+        )
+
+        # add course prereqs
+        response.add_field(
+            name = 'Requirements',
+            value = class_info['requirementsDescription'],
+            inline = False
         )
 
         # add course classes
@@ -125,8 +142,6 @@ async def get_class_list(ctx):
             # c['room'],
             c['instructor']] for c in class_info['classes']
         ][int(NO_IN_PAGE * (int(page) - 1)):int(min(int(NO_IN_PAGE * int(page)), len(classes)))]
-
-        print(classes_body)
 
         response.add_field(
             name = 'Classes (page {} of {})'.format(page, (len(classes) - 1 )// NO_IN_PAGE + 1),
