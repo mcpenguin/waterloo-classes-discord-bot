@@ -307,6 +307,12 @@ async def get_class_list(ctx):
     else:
         await ctx.send(response)
 
+# handle errors for discord bot
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send('Command not found, type ?help for list of commands')
+
 # run bot
 bot.run(TOKEN)
 
