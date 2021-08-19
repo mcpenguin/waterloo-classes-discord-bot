@@ -39,20 +39,25 @@ def convert_rgb_to_tuple(rgb):
     else:
         return (0, 0, 0)
 
-
 # get class info 
 def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
     
     # fetch class info from database
     class_info = db.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber, 'term': term})
     
-    if class_info.count() == 0:
+    db_class_info = None
+    for x in class_info:
+        db_class_info = x
+        break
+
+    # if class info is None, return does not exist error
+    if db_class_info == None:
         return 'Class does not exist'
 
     # if class does exist, fetch additional class info using the UW API
     r = requests.get(f"{API_URL}/Courses/{term}/{subjectCode}/{catalogNumber}", headers={'X-API-KEY': API_KEY})
     # return the combined info
-    return {**class_info[0], **r.json()[0]}
+    return {**db_class_info, **r.json()[0]}
 
 # get class number 
 def get_class_section_info(subjectCode, catalogNumber, classNo, term = CURRENT_TERM):
@@ -73,7 +78,71 @@ def get_tag_value(tag, command, default=None):
         return default
 
 # setup discord client and connect to user
-bot = commands.Bot(command_prefix='?')
+bot = commands.Bot(command_prefix='?', help_command=None)
+bot.remove_command('help')
+
+# get help info object from help.json
+help_info = json.load(open('help.json'))
+
+# redefine help command
+@bot.command()
+async def help(ctx):
+    # get params from ctx
+    content = ctx.message.content
+    params = content.split(" ")[1:]
+
+    response = 'Invalid command, please try again'
+
+    # generic help message
+    if len(params) == 0:
+        # get list of commands
+        commandString = '''
+            ⭐ ?class -- get info about a course
+            ⭐ ?help -- shows this message
+        '''
+
+        # initialize embed
+        response = discord.Embed(
+            title='Commands', 
+            description=commandString, 
+            color=discord.Color.from_rgb(255, 255, 255)
+        )
+
+    # specific command hele
+    else:
+        # get command
+        command = params[0]
+
+        # get help message for command
+        command_info = help_info.get(command, None)
+        if command_info == None:
+            response = 'Invalid command, please try again'
+        else:
+            response = discord.Embed(
+                title = f'Help for command ?{command}',
+                description = command_info['desc'],
+            )
+
+            response.add_field(
+                name = 'Usage',
+                value = command_info['use'],
+                inline = False
+            )
+
+            response.add_field(
+                name = 'Examples',
+                # join examples into bullet list
+                value = '```' + "\n".join(command_info['examples']) + '```',
+                inline = False
+            )
+
+    # send response
+    if type(response) == discord.Embed:
+        await ctx.send(embed=response)
+    else:
+        await ctx.send(response)
+
+
 
 # respond to messages
 @bot.command(name='class', help='Get class info')
@@ -87,14 +156,14 @@ async def get_class_list(ctx):
 
     # usage
     # ?class [subject code] [catalog number] (-t term) (-p page) (-c class_no) 
-    subjectCode = params[0]
-    catalogNumber = str(params[1])
+    subjectCode = params[0].upper()
+    catalogNumber = str(params[1]).upper()
 
     term = get_tag_value('-t', content, CURRENT_TERM)
     page = get_tag_value('-p', content, 1)
     class_no = get_tag_value('-c', content, None)
 
-    # get color of embed
+    # get color of embed from subject code
     color = convert_rgb_to_tuple(color_config[subjectCode]['color']['background'])
     disc_color = discord.Color.from_rgb(color[0], color[1], color[2])
 
