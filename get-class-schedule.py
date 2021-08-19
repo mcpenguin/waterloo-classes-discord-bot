@@ -7,7 +7,9 @@
 import mechanize
 import json
 from bs4 import BeautifulSoup
-import datetime
+
+from datetime import datetime
+import pytz
 
 # %%
 from pymongo import MongoClient
@@ -91,7 +93,7 @@ def getClassSchedule():
 
                     if children[0].name == 'th':
                         # add last updated time to course
-                        course['dateUpdated'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        course['dateUpdated'] = datetime.now(tz='US/Eastern').strftime("%Y-%m-%d %H:%M:%S")
 
                         # add course to course list
                         courses += [course]
@@ -147,7 +149,9 @@ def getClassSchedule():
                     # otherwise, the tr is an undefined row, and we ignore it
                     else:
                         continue
-                    
+                
+                # add last updated time to course
+                course['dateUpdated'] = datetime.now(tz='US/Eastern').strftime("%Y-%m-%d %H:%M:%S")
                 courses += [course]
 
                 # delete old data
