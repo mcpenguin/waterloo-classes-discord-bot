@@ -21,6 +21,8 @@ API_KEY = os.getenv('API_KEY')
 CURRENT_TERM = '1219'
 NO_IN_PAGE = 5
 
+PREFIX = 'wc?'
+
 API_URL = 'https://openapi.data.uwaterloo.ca/v3'
 
 # get color config from json file
@@ -78,8 +80,13 @@ def get_tag_value(tag, command, default=None):
         return default
 
 # setup discord client and connect to user
-bot = commands.Bot(command_prefix='?', help_command=None)
+bot = commands.Bot(command_prefix=PREFIX, help_command=None)
 bot.remove_command('help')
+
+# set status of discord bot
+@bot.event
+async def on_ready():
+    await bot.change_presence(activity=discord.Game(name=f'Type {PREFIX}help for usage'))
 
 # get help info object from help.json
 help_info = json.load(open('help.json'))
@@ -96,7 +103,7 @@ async def help(ctx):
     # generic help message
     if len(params) == 0:
         # get list of commands as string
-        commandString = '```' + '?help -- Shows this message \n' + '\n'.join([f"?{x} -- {help_info[x]['desc']}" for x in help_info]) + '```'
+        commandString = '```' + f'{PREFIX}help -- Shows this message \n' + '\n'.join([f"{PREFIX}{x} -- {help_info[x]['desc']}" for x in help_info]) + '```'
 
         # initialize embed
         response = discord.Embed(
@@ -116,7 +123,7 @@ async def help(ctx):
             response = 'Invalid command, please try again'
         else:
             response = discord.Embed(
-                title = f'Help for command ?{command}',
+                title = f'Help for command {PREFIX}{command}',
                 description = command_info['desc'],
             )
 
@@ -274,7 +281,7 @@ async def get_class_list(ctx):
         # create response
         response = discord.Embed(
             title = class_info['subjectCode'] + ' ' + class_info['catalogNumber'] + ' - ' + class_info['title'],
-            color = discord.Color.from_rgb(0, 0, 255),
+            color = disc_color,
         )
 
         response.add_field(
