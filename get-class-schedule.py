@@ -154,7 +154,7 @@ def getClassSchedule():
                 delete_query = {
                     'term': TERM,
                     'subjectCode': SUBJECT,
-                    'type': 'UG' if link == UNDER_LINK else 'G'
+                    'level': 'UG' if link == UNDER_LINK else 'G'
                 }
                 client['waterloo']['courses'].delete_many(delete_query)
 
