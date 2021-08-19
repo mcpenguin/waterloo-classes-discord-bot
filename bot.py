@@ -95,11 +95,8 @@ async def help(ctx):
 
     # generic help message
     if len(params) == 0:
-        # get list of commands
-        commandString = '''
-            ⭐ ?class -- get info about a course
-            ⭐ ?help -- shows this message
-        '''
+        # get list of commands as string
+        commandString = '```' + '?help -- Shows this message \n' + '\n'.join([f"?{x} -- {help_info[x]['desc']}" for x in help_info]) + '```'
 
         # initialize embed
         response = discord.Embed(
@@ -142,7 +139,34 @@ async def help(ctx):
     else:
         await ctx.send(response)
 
+# bot info
+@bot.command(name='info', help='Get bot info')
+async def info(ctx):
 
+    # initialize embed
+    response = discord.Embed(
+        title='Waterloo Classes Bot', 
+        description='''
+            *Waterloo Classes Bot* is a bot that allows you to search for classes offered by the University of Waterloo, using the UWaterloo Open Data API and a web scraper for classes.uwaterloo.ca.
+        ''', 
+        url='https://github.com/mcpenguin/waterloo-classes-discord-bot',
+        color=discord.Color.from_rgb(255, 255, 255)
+    )
+
+    # get bot info
+    response.add_field(
+        name = 'Author',
+        value = 'Marcus Chan (https://github.com/mcpenguin)',
+        inline = False
+    )
+
+    response.add_field(
+        name = 'Version',
+        value = '1.0.0',
+        inline = False
+    )
+
+    await ctx.send(embed=response)
 
 # respond to messages
 @bot.command(name='class', help='Get class info')
