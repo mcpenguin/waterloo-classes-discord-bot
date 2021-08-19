@@ -26,6 +26,9 @@ load_dotenv()
 UNDER_LINK = "https://classes.uwaterloo.ca/under.html"
 GRAD_LINK = "https://classes.uwaterloo.ca/grad.html"
 
+# url to fetch other course data
+WAPI_URL = "https://openapi.data.uwaterloo.ca/v3"
+
 CURRENT_TERM = '1219'
 
 # %%
@@ -93,7 +96,7 @@ def getClassSchedule():
 
                     if children[0].name == 'th':
                         # add last updated time to course
-                        course['dateUpdated'] = datetime.now(tz='US/Eastern').strftime("%Y-%m-%d %H:%M:%S")
+                        course['dateUpdated'] = datetime.now(pytz.timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
 
                         # add course to course list
                         courses += [course]
@@ -151,7 +154,7 @@ def getClassSchedule():
                         continue
                 
                 # add last updated time to course
-                course['dateUpdated'] = datetime.now(tz='US/Eastern').strftime("%Y-%m-%d %H:%M:%S")
+                course['dateUpdated'] = datetime.now(pytz.timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
                 courses += [course]
 
                 # delete old data
