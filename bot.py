@@ -8,6 +8,8 @@ from tabulate import tabulate
 import requests
 import json
 
+import re
+
 from pymongo import MongoClient
 
 load_dotenv()
@@ -77,6 +79,32 @@ def get_tag_value(tag, command, default=None):
         return command_split[tag_pos + 1]
     else:
         return default
+
+# parse prerequisites from reqdesc (from uwapi response)
+def parse_prerequisites(reqdesc):
+    result = {
+        'prereq': None,
+        'antireq': None,
+        'coreq': None,
+    }
+    if reqdesc == None:
+        return result
+
+    # get prereq, antireq, and coreq from reqdesc
+    prereq = re.search('(Prereq:).*?(\.)', reqdesc + '.')
+    antireq = re.search('(Antireq:).*?(\.)', reqdesc + '.')
+    coreq = re.search('/(Coreq:).*(\.)/g', reqdesc + '.')
+    
+    # remove first word for prereq, antireq and coreq
+    if prereq != None:
+        result['prereq'] = prereq.group(0).split(' ')[1:]
+    if antireq != None:
+        result['antireq'] = antireq.group(0).split(' ')[1:]
+    if coreq != None:
+        result['coreq'] = coreq.group(0).split(' ')[1:]
+
+    print(result)
+    return result
 
 # setup discord client and connect to user
 bot = commands.Bot(command_prefix=PREFIX, help_command=None)
@@ -230,12 +258,32 @@ async def get_class_list(ctx):
             inline = True
         )
 
-        # add course prereqs
+        # add course reqs
+        reqs = parse_prerequisites(class_info['requirementsDescription'])
+        print(' '.join(reqs['coreq']) if reqs['coreq'] != None else 'None')
+
+        # add empty field for new line
+        response.add_field(name = chr(173), value = chr(173))
+
         response.add_field(
-            name = 'Requirements',
-            value = class_info['requirementsDescription'],
+            name = 'Prerequisites',
+            value = ' '.join(reqs['prereq']) if reqs['prereq'] != None else 'None',
             inline = False
         )
+
+        # add course description
+        response.add_field(
+            name = 'Antirequisites',
+            value = ' '.join(reqs['antireq']) if reqs['antireq'] != None else 'None',
+            inline = True
+        )
+
+        response.add_field(
+            name = 'Corequisites',
+            value = ' '.join(reqs['coreq']) if reqs['coreq'] != None else 'None',
+            inline = True
+        )
+
 
         # add course classes
         classes = class_info['classes']
