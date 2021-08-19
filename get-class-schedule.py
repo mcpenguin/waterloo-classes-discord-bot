@@ -98,8 +98,9 @@ def getClassSchedule():
                         # add last updated time to course
                         course['dateUpdated'] = datetime.now(pytz.timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
 
-                        # add course to course list
-                        courses += [course]
+                        # add course to course list if course is not empty
+                        if course.get('subjectCode', None) != None:
+                            courses += [course]
 
                         # reinitialize course
                         course = {
@@ -155,7 +156,10 @@ def getClassSchedule():
                 
                 # add last updated time to course
                 course['dateUpdated'] = datetime.now(pytz.timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
-                courses += [course]
+
+                # add final course
+                if course.get('subjectCode', None) != None:
+                    courses += [course]
 
                 # delete old data
                 delete_query = {
