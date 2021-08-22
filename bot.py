@@ -60,17 +60,6 @@ def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
         db_class_info = x
         break
 
-    # special case: BUS (laurier courses)
-    if subjectCode == 'BUS':
-        db_class_info = {
-            'subjectCode': subjectCode,
-            'catalogNumber': catalogNumber,
-            'term': term,
-            'classes': [],
-            'level': 'UG',
-            'dateUpdated': '0000-00-00 00:00:00'
-        }
-
     # if class info is None, return does not exist error
     if db_class_info == None:
         return 'Class does not exist'
@@ -269,7 +258,7 @@ async def get_class_list(ctx):
             name = 'Level',
             value = {
                 'UG': 'Undergraduate',
-                'GRD': 'Graduate'
+                'G': 'Graduate'
             }[class_info['associatedAcademicCareer']],
         ) 
         # add course units
