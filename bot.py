@@ -51,8 +51,6 @@ def convert_rgb_to_tuple(rgb):
 
 # get class info 
 def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
-
-    print(subjectCode, catalogNumber, term)
     
     # fetch class info from database
     class_info = db_courses.find({'subjectCode': subjectCode, 'catalogNumber': catalogNumber, 'term': term})
@@ -82,8 +80,6 @@ def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
     for x in course_info:
         db_course_info = x
         break
-
-    print({**db_class_info, **db_course_info})
 
     # return the combined info
     return {**db_class_info, **db_course_info}
@@ -234,8 +230,6 @@ async def get_class_list(ctx):
     content = ctx.message.content
     params = content.split(" ")[1:]
 
-    print('hello world!!')
-
     # initialize generic response
     response = 'The system could not find the specified class/course, please try again'
 
@@ -248,8 +242,6 @@ async def get_class_list(ctx):
     term = get_tag_value('-t', content, CURRENT_TERM)
     page = get_tag_value('-p', content, 1)
     class_no = get_tag_value('-c', content, None)
-
-    print(subjectCode, catalogNumber, term, page, class_no)
 
     # get color of embed from subject code
     color = convert_rgb_to_tuple(color_config[subjectCode]['color']['background'])
