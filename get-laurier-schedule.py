@@ -137,7 +137,7 @@ def getClassSchedule(driver):
 if __name__ == "__main__":
     chrome_options = Options()
     chrome_options.add_argument("--headless")
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(executable_path=os.getenv("DRIVER_PATH"), options=chrome_options)
     try:
         courses = getClassSchedule(driver)
         print(courses)
