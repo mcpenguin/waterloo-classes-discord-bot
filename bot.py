@@ -32,7 +32,14 @@ color_config = json.load(open('color_config.json'))
 
 # connect to mongodb database
 client = MongoClient(MONGO_URL)
-db = client['waterloo']['courses']
+db_courses = client['waterloo']['courses']
+db_courses_descriptions = client['waterloo']['courses-descriptions']
+
+# parse term code into name
+# eg 1219 -> "Fall 2021"
+def parse_term_code(termcode):
+    season = {'1': 'Winter', '5': 'Spring', '9': 'Fall'}[termcode[3]]
+    return f"{season} {int(termcode[0:3]) + 1900}"
 
 # convert rgb string into rgb tuple
 def convert_rgb_to_tuple(rgb):
@@ -46,7 +53,7 @@ def convert_rgb_to_tuple(rgb):
 def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
     
     # fetch class info from database
-    class_info = db.find({'subjectCode': subjectCode, 'catalogNumber': catalogNumber, 'term': term})
+    class_info = db_courses.find({'subjectCode': subjectCode, 'catalogNumber': catalogNumber, 'term': term})
     
     db_class_info = None
     for x in class_info:
@@ -57,14 +64,18 @@ def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
     if db_class_info == None:
         return 'Class does not exist'
 
-    # if class does exist, fetch additional class info using the UW API
-    r = requests.get(f"{API_URL}/Courses/{term}/{subjectCode}/{catalogNumber}", headers={'X-API-KEY': API_KEY})
+    # if class does exist, fetch additional class info from courses_descriptions collection
+    course_info = db_courses_descriptions.find({'subjectCode': subjectCode, 'catalogNumber': catalogNumber})
+    for x in course_info:
+        db_course_info = x
+        break
+
     # return the combined info
-    return {**db_class_info, **r.json()[0]}
+    return {**db_class_info, **db_course_info}
 
 # get class number 
 def get_class_section_info(subjectCode, catalogNumber, classNo, term = CURRENT_TERM):
-    class_info = db.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber, 'term': term})
+    class_info = db_courses.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber, 'term': term})
     for x in class_info[0]['classes']:
         if x['classNumber'] == classNo:
             return x
@@ -103,7 +114,6 @@ def parse_prerequisites(reqdesc):
     if coreq != None:
         result['coreq'] = coreq.group(0).split(' ')[1:]
 
-    print(result)
     return result
 
 # setup discord client and connect to user
@@ -238,7 +248,7 @@ async def get_class_list(ctx):
 
         # create response
         response = discord.Embed(
-            title = f"{class_info['subjectCode']} {class_info['catalogNumber']} - {class_info['title']} [{class_info['termName']}]",
+            title = f"{class_info['subjectCode']} {class_info['catalogNumber']} - {class_info['title']} [{parse_term_code(term)}]",
             color = disc_color,
             description = class_info['description']
         )
@@ -260,7 +270,6 @@ async def get_class_list(ctx):
 
         # add course reqs
         reqs = parse_prerequisites(class_info['requirementsDescription'])
-        print(' '.join(reqs['coreq']) if reqs['coreq'] != None else 'None')
 
         # add empty field for new line
         response.add_field(name = chr(173), value = chr(173))
