@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -134,7 +135,9 @@ def getClassSchedule(driver):
     return courses
 
 if __name__ == "__main__":
-    driver = webdriver.Chrome()
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
     try:
         courses = getClassSchedule(driver)
         print(courses)
