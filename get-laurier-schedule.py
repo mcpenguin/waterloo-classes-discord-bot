@@ -67,6 +67,15 @@ def getClassSchedule(driver):
             wait_for_selector(driver, "#facultyMeetingTimes").click()
             # Schedule
             try:
+                side_divs = WebDriverWait(driver, 10).until(
+                    EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".right > div"))
+                )
+            except TimeoutException:
+                side_divs = []
+            if (len(side_divs) < 2):
+                # The date information is not there
+                class_data["time"] = "Unknown"
+            else:
                 days_text = wait_for_selector(
                     driver, ".right > div").text.replace("A", "").replace("P", "").replace("M", "").replace(" ", "")
                 schedule_list = wait_for_selector(driver, "#classDetailsContentDiv ul")
@@ -75,9 +84,6 @@ def getClassSchedule(driver):
                     if day.get_attribute("aria-checked") == "true":
                         days_text += day.get_attribute("data-abbreviation")
                 class_data["time"] = days_text.replace("R", "Th")
-            except TimeoutException:
-                # The date information is not there
-                class_data["time"] = "Unknown" # TODO: Should this be something else?
             # Instructor
             class_data["instructor"] = wait_for_selector(
                 driver, ".meeting-faculty").text.replace("Instructor:", "").strip(" ")
