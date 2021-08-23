@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
 from selenium.webdriver.chrome.options import Options
 import os
 from dotenv import load_dotenv
@@ -128,8 +128,12 @@ def getClassSchedule(driver):
             print("All pages scraped")
             break
         # Make sure the page actually changed (takes time to load)
-        WebDriverWait(driver, 10).until(
-            lambda _: driver.find_element_by_css_selector(".page-number").get_attribute("value") != old_page_num)
+        try:
+            WebDriverWait(driver, 10).until(
+                lambda _: driver.find_element_by_css_selector(".page-number").get_attribute("value") != old_page_num)
+        except StaleElementReferenceException:
+            # Page changed before the value could be checked
+            pass
         print(f"Loaded page {page}")
 
     return courses
@@ -137,7 +141,7 @@ def getClassSchedule(driver):
 if __name__ == "__main__":
     chrome_options = Options()
     chrome_options.add_argument("--headless")
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(executable_path=os.getenv("DRIVER_PATH"), options=chrome_options)
     try:
         courses = getClassSchedule(driver)
         print(courses)
