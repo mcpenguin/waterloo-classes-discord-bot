@@ -258,7 +258,7 @@ async def get_class_list(ctx):
             name = 'Level',
             value = {
                 'UG': 'Undergraduate',
-                'G': 'Graduate'
+                'GRD': 'Graduate'
             }[class_info['associatedAcademicCareer']],
         ) 
         # add course units
