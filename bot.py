@@ -261,6 +261,12 @@ async def info(ctx):
         inline = False
     )
 
+    response.add_field(
+        name = 'Add the bot to other servers!',
+        value = 'https://discord.com/api/oauth2/authorize?client_id=877440425718333460&permissions=2048&scope=bot',
+        inline = False
+    )
+
     await ctx.send(embed=response)
 
 # respond to messages
