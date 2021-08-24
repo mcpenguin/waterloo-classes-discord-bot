@@ -66,8 +66,20 @@ db_courses_descriptions = client['waterloo']['courses-descriptions']
 # parse term code into name
 # eg 1219 -> "Fall 2021"
 def parse_term_code(termcode):
-    season = {'1': 'Winter', '5': 'Spring', '9': 'Fall'}[termcode[3]]
-    return f"{season} {int(termcode[0:3]) + 1900}"
+    if termcode != 0:
+        season = {'1': 'Winter', '5': 'Spring', '9': 'Fall'}[termcode[3]]
+        return f"{season} {int(termcode[0:3]) + 1900}"
+    else:
+        return "Not Recently Offered"
+
+# get last term code
+def get_last_term_code(termcode):
+    if termcode[-1] == '9':
+        return f"{int(termcode[0:3])}5"
+    elif termcode[-1] == '5':
+        return f"{int(termcode[0:3])}1"
+    else:
+        return f"{int(termcode[0:3]) - 1}9"
 
 # convert rgb string into rgb tuple
 def convert_rgb_to_tuple(rgb):
@@ -78,7 +90,7 @@ def convert_rgb_to_tuple(rgb):
         return (0, 0, 0)
 
 # get class info 
-def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
+def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM, tries=0):
     
     # fetch class info from database
     class_info = db_courses.find({'subjectCode': subjectCode, 'catalogNumber': catalogNumber, 'term': term})
@@ -88,18 +100,29 @@ def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM):
         db_class_info = x
         break
 
-    # if class info is None, return does not exist error
+    # if class info is None, try the previous term
     if db_class_info == None:
-        return 'Class does not exist'
+        if tries < 3:
+            return get_class_info(subjectCode, catalogNumber, get_last_term_code(term), tries + 1)
+        # after 3 tries, if still no match, let the class info just be a dict with default info
+        db_class_info = {
+            'term': 0,
+            'dateUpdated': 'None',
+            'units': 0.5,
+        }
 
     # if class does exist, fetch additional class info from courses_descriptions collection
     course_info = db_courses_descriptions.find({'subjectCode': subjectCode, 'catalogNumber': catalogNumber})
     for x in course_info:
         db_course_info = x
-        break
+        
+        
+    # if course info is None, return class does not exist
+    if db_course_info == None:
+        return 'Class does not exist'
 
     # return the combined info
-    return {**db_class_info, **db_course_info}
+    return {'term': term, **db_class_info, **db_course_info}
 
 # get class number 
 def get_class_section_info(subjectCode, catalogNumber, classNo, term = CURRENT_TERM):
@@ -132,7 +155,7 @@ def parse_prerequisites(reqdesc):
     # get prereq, antireq, and coreq from reqdesc
     prereq = re.search('(Prereq:).*?(\.)', reqdesc + '.')
     antireq = re.search('(Antireq:).*?(\.)', reqdesc + '.')
-    coreq = re.search('/(Coreq:).*(\.)/g', reqdesc + '.')
+    coreq = re.search('(Coreq:).*?(\.)', reqdesc + '.')
     
     # remove first word for prereq, antireq and coreq
     if prereq != None:
@@ -276,7 +299,7 @@ async def get_class_list(ctx):
 
         # create response
         response = discord.Embed(
-            title = f"{class_info['subjectCode']} {class_info['catalogNumber']} - {class_info['title']} [{parse_term_code(term)}]",
+            title = f"{class_info['subjectCode']} {class_info['catalogNumber']} - {class_info['title']} [{parse_term_code(class_info['term'])}]",
             color = disc_color,
             description = class_info['description']
         )
@@ -308,7 +331,6 @@ async def get_class_list(ctx):
             inline = False
         )
 
-        # add course description
         response.add_field(
             name = 'Antirequisites',
             value = ' '.join(reqs['antireq']) if reqs['antireq'] != None else 'None',
@@ -320,40 +342,43 @@ async def get_class_list(ctx):
             value = ' '.join(reqs['coreq']) if reqs['coreq'] != None else 'None',
             inline = True
         )
+      
+        # add course classes only if term code is not 0
+        if class_info['term'] != 0:
+            classes = class_info['classes']
+            classes_head = [
+                '#',
+                'Sect',
+                'Camp Loc',
+                'Cap',
+                # 'Time',
+                # 'Room',
+                'Prof'
+            ]
 
+            classes_body = [
+                [c['classNumber'], 
+                c['section'], 
+                " ".join(c['campusLocation'].split()), # replace adjacent white spaces with single spaces
+                '{}/{}'.format(c['enrolTotal'], c['enrolCap']),
+                # c['time'],
+                # c['room'],
+                c['instructor']] for c in class_info['classes']
+            ][int(NO_IN_PAGE * (int(page) - 1)):int(min(int(NO_IN_PAGE * int(page)), len(classes)))]
 
-        # add course classes
-        classes = class_info['classes']
-        classes_head = [
-            '#',
-            'Sect',
-            'Camp Loc',
-            'Cap',
-            # 'Time',
-            # 'Room',
-            'Prof'
-        ]
+            response.add_field(
+                name = 'Classes (page {} of {})'.format(page, (len(classes) - 1 )// NO_IN_PAGE + 1),
+                value = '```' + tabulate(classes_body, classes_head) + '```',
+                inline = False
+            )
 
-        classes_body = [
-            [c['classNumber'], 
-            c['section'], 
-            " ".join(c['campusLocation'].split()), # replace adjacent white spaces with single spaces
-            '{}/{}'.format(c['enrolTotal'], c['enrolCap']),
-            # c['time'],
-            # c['room'],
-            c['instructor']] for c in class_info['classes']
-        ][int(NO_IN_PAGE * (int(page) - 1)):int(min(int(NO_IN_PAGE * int(page)), len(classes)))]
+            # add last updated
+            response.set_footer(
+                text = 'Last updated: ' + class_info['dateUpdated'] + ' EST'
+            )
 
-        response.add_field(
-            name = 'Classes (page {} of {})'.format(page, (len(classes) - 1 )// NO_IN_PAGE + 1),
-            value = '```' + tabulate(classes_body, classes_head) + '```',
-            inline = False
-        )
-
-        # add last updated
-        response.set_footer(
-            text = 'Last updated: ' + class_info['dateUpdated'] + ' EST'
-        )
+        else:
+            response.set_footer(text = 'No classes available for last three terms')
 
     # if class number is specified, get the specific class info
     else:
