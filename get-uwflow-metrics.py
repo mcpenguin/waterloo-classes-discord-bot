@@ -39,7 +39,7 @@ client = MongoClient(os.getenv('MONGO_URL'))
 
 # get all courses from mongo client
 collection = client['waterloo']['courses-descriptions']
-courses = list(collection.find({}, {'subjectCode': 1, 'catalogNumber': 1, '_id': 0}))
+courses = list(collection.find({}, {'subjectCode': 1, 'catalogNumber': 1, '_id': 0})).sort(key=(lambda x: (x['subjectCode'], x['catalogNumber'])))
 
 chrome_options = Options()
 chrome_options.add_argument("--headless")
@@ -73,7 +73,7 @@ for course in courses:
 
         print(subjectCode, catalogNumber, percent_liked, percent_easy, percent_useful)
 
-    except TimeoutException as e:
+    except Exception as e:
         print(f"Unable to retrieve course info for course {subjectCode} {catalogNumber}")
 
 driver.close()
