@@ -54,6 +54,7 @@ NO_IN_PAGE = 5
 PREFIX = 'wc?'
 
 API_URL = 'https://openapi.data.uwaterloo.ca/v3'
+UW_FLOW_URL = 'https://uwflow.com/course'
 
 # get color config from json file
 color_config = json.load(open('color_config.json'))
@@ -470,6 +471,11 @@ async def on_command_error(ctx, error):
         await ctx.send('Command not found, type ?help for list of commands')
 
 # run bot
-bot.run(TOKEN)
+if __name__ == '__main__':
+    try:
+        bot.run(TOKEN)
+    finally:
+        driver.quit()
+
 
 

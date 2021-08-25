@@ -29,6 +29,9 @@ GRAD_LINK = "https://classes.uwaterloo.ca/grad.html"
 # url to fetch other course data
 WAPI_URL = "https://openapi.data.uwaterloo.ca/v3"
 
+# uw flow url
+UW_FLOW_URL = 'https://uwflow.com/course'
+
 CURRENT_TERM = '1219'
 
 # %%
