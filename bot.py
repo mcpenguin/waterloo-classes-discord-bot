@@ -279,10 +279,19 @@ async def get_class_list(ctx):
     # initialize generic response
     response = 'The system could not find the specified class/course, please try again'
 
-    # usage
-    # ?class [subject code] [catalog number] (-t term) (-p page) (-c class_no) 
-    subjectCode = params[0].upper()
-    catalogNumber = str(params[1]).upper()
+    # usages
+    subjectCode, catalogNumber = None, None
+    # case 1: ?class [subject code] [catalog number] (-t term) (-p page) (-c class_no) 
+    if params[0].isalpha():
+        subjectCode = params[0].upper()
+        catalogNumber = str(params[1]).upper()
+    # case 2: ?class [subject code][catalog number] (-t term) (-p page) (-c class_no) 
+    # ie the subject code and catalog number is concatenated together (eg wc?class cs246e)
+    else:
+        # split the first part (subject code) and the second part (catalog number)
+        parts = re.split('(\d.*)', params[0])
+        subjectCode = parts[0].upper()
+        catalogNumber = parts[1].upper() 
 
     # get tag values (if they exist)
     term = get_tag_value('-t', content, CURRENT_TERM)
