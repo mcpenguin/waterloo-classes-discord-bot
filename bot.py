@@ -120,8 +120,8 @@ def get_uwflow_metrics(subjectCode, catalogNumber, TIMEOUT = 2):
         return {'percent_liked': percent_liked, 'percent_easy': percent_easy, 'percent_useful': percent_useful}
 
     except Exception as e:
-        print(e)
-        print(f"Unable to retrieve course info for course {subjectCode} {catalogNumber}")
+        # print(e)
+        # print(f"Unable to retrieve course info for course {subjectCode} {catalogNumber}")
 
         return {}
 
