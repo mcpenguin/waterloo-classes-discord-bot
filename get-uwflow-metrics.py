@@ -1,3 +1,5 @@
+# python script to get uwflow metrics
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -11,35 +13,14 @@ from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
 
-import asyncio
-from pyppeteer import launch
-
 load_dotenv()
-
-# subjectCode = 'stat'
-# catalogNumber = '240'
-# UW_FLOW_URL = 'https://uwflow.com/course'
-
-# url = f"{UW_FLOW_URL}/{subjectCode}{catalogNumber}"
-
-# async def main():
-#     browser = await launch(headless=True)
-#     page = await browser.newPage()
-#     await page.goto(url)
-#     # await page.screenshot({'path': 'example.png'})
-
-
-
-#     await browser.close()
-
-# asyncio.get_event_loop().run_until_complete(main())
 
 # get mongodb database using mongo client
 client = MongoClient(os.getenv('MONGO_URL'))
 
 # get all courses from mongo client
 collection = client['waterloo']['courses-descriptions']
-courses = list(collection.find({}, {'subjectCode': 1, 'catalogNumber': 1, '_id': 0})).sort(key=(lambda x: (x['subjectCode'], x['catalogNumber'])))
+courses = list(collection.find({}, {'subjectCode': 1, 'catalogNumber': 1, '_id': 0}).sort([('subjectCode', 1), ('catalogNumber', 1)]))
 
 chrome_options = Options()
 chrome_options.add_argument("--headless")
@@ -49,6 +30,10 @@ driver = webdriver.Chrome(executable_path=os.getenv("DRIVER_PATH"), options=chro
 UW_FLOW_URL = 'https://uwflow.com/course'
 # num of seconds before timeout
 TIMEOUT = 2
+
+subjectCode = None
+catalogNumber = None
+tmp_subjectCode = 'ACC'
 
 for course in courses:
     subjectCode = course['subjectCode']
@@ -71,9 +56,15 @@ for course in courses:
             {'$set': {'percent_liked': percent_liked, 'percent_easy': percent_easy, 'percent_useful': percent_useful}}
         )
 
-        print(subjectCode, catalogNumber, percent_liked, percent_easy, percent_useful)
+        print(f"Retrieved UW Flow metrics for {subjectCode} {catalogNumber}")
 
     except Exception as e:
         print(f"Unable to retrieve course info for course {subjectCode} {catalogNumber}")
+        pass
 
+    if tmp_subjectCode != subjectCode:
+        print(f'Retrieved UW Flow metrics for {subjectCode}')
+        tmp_subjectCode = subjectCode
+
+print(f'Retrieved UW Flow metrics for {subjectCode}')
 driver.close()
