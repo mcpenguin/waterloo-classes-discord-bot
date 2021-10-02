@@ -15,10 +15,10 @@ import pytz
 from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
-from apscheduler.schedulers.blocking import BlockingScheduler
+# from apscheduler.schedulers.blocking import BlockingScheduler
 
 # initialize scheduler
-sched = BlockingScheduler()
+# sched = BlockingScheduler()
 
 # take env vars from .env file
 load_dotenv()
@@ -51,7 +51,7 @@ subjects = [item.attrs['value'] for item in br.find_control(name='subject').item
 # get mongodb database using mongo client
 client = MongoClient(os.getenv('MONGO_URL'))
 
-@sched.scheduled_job('interval', minutes=60)
+# @sched.scheduled_job('interval', minutes=60)
 def getClassSchedule():
     for SUBJECT in subjects:
         for TERM in [CURRENT_TERM]: # only update current term
@@ -178,4 +178,5 @@ def getClassSchedule():
                 print('Updated courses for subject {} for term {} for level {}'.format(SUBJECT, TERM, 'UG' if link == UNDER_LINK else 'G'))
 
 # start the scheduling
-sched.start()
+getClassSchedule()
+# sched.start()

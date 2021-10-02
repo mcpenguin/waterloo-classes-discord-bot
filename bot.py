@@ -21,6 +21,9 @@ from bs4 import BeautifulSoup
 # from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
 # from selenium.webdriver.chrome.options import Options
 
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
 load_dotenv()
 
 # get env vars
@@ -56,6 +59,8 @@ def get_default_term():
     # next termcode is the termcode of the current time but 16 weeks in the future
     next_termcode = get_termcode(datetime.now() + timedelta(weeks=16))
 
+    print(next_termcode)
+
     if today.month == current_termcode[3] and today.day <= 15:
         return current_termcode
     else:
@@ -70,7 +75,7 @@ API_URL = 'https://openapi.data.uwaterloo.ca/v3'
 UW_FLOW_URL = 'https://uwflow.com/course'
 
 # get color config from json file
-color_config = json.load(open('color_config.json'))
+color_config = json.load(open(os.path.join(__location__, 'color_config.json')))
 
 # connect to mongodb database
 client = MongoClient(MONGO_URL)
@@ -216,7 +221,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=f'Type {PREFIX}help for usage'))
 
 # get help info object from help.json
-help_info = json.load(open('help.json'))
+help_info = json.load(open(os.path.join(__location__, 'help.json')))
 
 # redefine help command
 @bot.command()
