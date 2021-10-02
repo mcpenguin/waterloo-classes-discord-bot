@@ -59,14 +59,13 @@ def get_default_term():
     # next termcode is the termcode of the current time but 16 weeks in the future
     next_termcode = get_termcode(datetime.now() + timedelta(weeks=16))
 
-    print(next_termcode)
-
     if today.month == current_termcode[3] and today.day <= 15:
         return current_termcode
     else:
         return next_termcode
 
 CURRENT_TERM = get_default_term()
+print(CURRENT_TERM)
 NO_IN_PAGE = 5
 
 PREFIX = 'wc?'

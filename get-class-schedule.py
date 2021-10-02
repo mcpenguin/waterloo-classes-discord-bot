@@ -32,7 +32,25 @@ WAPI_URL = "https://openapi.data.uwaterloo.ca/v3"
 # uw flow url
 UW_FLOW_URL = 'https://uwflow.com/course'
 
-CURRENT_TERM = '1219'
+# get 'default' term
+# gets the 'next' term if > 15th day of the starting month of the current term; otherwise returns the current term
+# so eg Sept 1 2021 -> 1219 (Fall 2021)
+# Sept 16 2021 -> 1221 (Winter 2022)
+# Sept 27 2021 -> 1221 (Winter 2022) etc
+# this is to make sure the default switches just before course selection
+def get_default_term():
+    # first, get the current term and the next term which currently in
+    today = datetime.now()
+    current_termcode = get_termcode(datetime.now())
+    # next termcode is the termcode of the current time but 16 weeks in the future
+    next_termcode = get_termcode(datetime.now() + timedelta(weeks=16))
+
+    if today.month == current_termcode[3] and today.day <= 15:
+        return current_termcode
+    else:
+        return next_termcode
+
+CURRENT_TERM = get_default_term()
 
 # %%
 # get subjects and terms
