@@ -397,9 +397,6 @@ async def get_class_list(ctx):
         # add course reqs
         reqs = parse_prerequisites(class_info['requirementsDescription'])
 
-        # add empty field for new line
-        # response.add_field(name = chr(173), value = chr(173))
-
         response.add_field(
             name = 'Prerequisites',
             value = ' '.join(reqs['prereq']) if reqs['prereq'] != None else 'None',
@@ -421,23 +418,13 @@ async def get_class_list(ctx):
         # add course classes only if term code is not 0
         if class_info['term'] != 0:
             classes = class_info['classes']
-            classes_head = [
-                '#',
-                'Sect',
-                'Camp Loc',
-                'Cap',
-                # 'Time',
-                # 'Room',
-                'Prof'
-            ]
+            classes_head = [ '#', 'Sect', 'Camp Loc', 'Cap', 'Prof']
 
             classes_body = [
                 [c['classNumber'], 
                 c['section'], 
                 " ".join(c['campusLocation'].split()), # replace adjacent white spaces with single spaces
                 '{}/{}'.format(c['enrolTotal'], c['enrolCap']),
-                # c['time'],
-                # c['room'],
                 c['instructor']] for c in class_info['classes']
             ][int(NO_IN_PAGE * (int(page) - 1)):int(min(int(NO_IN_PAGE * int(page)), len(classes)))]
 
