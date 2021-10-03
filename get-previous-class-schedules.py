@@ -119,7 +119,7 @@ def process_subject_data(term, level, subject, soup):
 
         # otherwise, the tr is an undefined row, and we ignore it
         else:
-            continue
+            pass
     
     # add last updated time to course
     course['dateUpdated'] = datetime.now(pytz.timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
