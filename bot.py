@@ -527,7 +527,7 @@ async def get_class_list(ctx):
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send('Command not found, type ?help for list of commands')
+        await ctx.send('Command not found, type wc?help for list of commands')
 
 # run bot
 if __name__ == '__main__':
