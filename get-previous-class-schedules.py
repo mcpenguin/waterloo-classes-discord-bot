@@ -178,10 +178,15 @@ def get_previous_class_schedule(driver, client):
         
         # do processing on the subject
         class_soup = BeautifulSoup(driver.page_source, "html.parser")
-        # get courses list
-        courses = process_subject_data(term, level, subject, class_soup)
-        # add courses list to db
-        add_subject_to_db(term, level, subject, courses, client)
+        try:
+            # get courses list
+            courses = process_subject_data(term, level, subject, class_soup)
+            # add courses list to db
+            add_subject_to_db(term, level, subject, courses, client)
+
+            print(f"Added courses for subject {subject} for term {term} for level {'UG' if level == 'under' else 'G'}")
+        except:
+            continue
 
         # once done, switch back to the form frame
         driver.switch_to.default_content()
