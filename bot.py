@@ -11,7 +11,7 @@ from pymongo import MongoClient
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
-from helpers import get_default_term, get_tag_value, convert_rgb_to_tuple, color_config, get_class_info, parse_term_code, parse_prerequisites, get_class_section_info 
+from helpers import get_default_term, get_tag_value, convert_rgb_to_tuple, color_config, get_class_info, parse_term_code, parse_prerequisites, get_class_section_info, terms_course_last_offered
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -133,7 +133,7 @@ async def info(ctx):
 
     await ctx.send(embed=response)
 
-# respond to messages
+# get information about a class
 @bot.command(name='class', help='Get class info')
 async def get_class_list(ctx):
     # get params
@@ -336,7 +336,80 @@ async def get_class_list(ctx):
     else:
         await ctx.send(response)
 
+# get information about when a course was last offered
+@bot.command(name='history')
+async def get_course_history(ctx):
+    # get params
+    content = ctx.message.content
+    params = content.split(" ")[1:]
 
+    page = get_tag_value('-p', content, 1)
+
+    # initialize generic response
+    response = 'The system could not find the specified class/course, please try again'
+
+    # usages
+    subjectCode, catalogNumber = None, None
+    # case 1: ?class [subject code] [catalog number] (-t term) (-p page) (-c class_no) 
+    if params[0].isalpha():
+        subjectCode = params[0].upper()
+        catalogNumber = str(params[1]).upper()
+    # case 2: ?class [subject code][catalog number] (-t term) (-p page) (-c class_no) 
+    # ie the subject code and catalog number is concatenated together (eg wc?class cs246e)
+    else:
+        # split the first part (subject code) and the second part (catalog number)
+        parts = re.split('(\d.*)', params[0])
+        subjectCode = parts[0].upper()
+        catalogNumber = parts[1].upper() 
+
+    # get color of embed from subject code
+    color = convert_rgb_to_tuple(color_config[subjectCode]['color']['background'])
+    disc_color = discord.Color.from_rgb(color[0], color[1], color[2])
+
+    # get the last offerings of the course
+    offerings_list = terms_course_last_offered(subjectCode, catalogNumber)
+    if len(offerings_list) == 0:
+        return
+    # get class info
+    class_info = get_class_info(driver, subjectCode, catalogNumber)
+    # if class is not valid, return error response 
+    if type(class_info) == str:
+        await ctx.send(response)
+        return
+
+    # create response
+    response = discord.Embed(
+        title = class_info['subjectCode'] + ' ' + class_info['catalogNumber'] + ' - ' + class_info['title'],
+        description = f"This course has been offered {len(offerings_list)} times since 2001.",
+        color = disc_color,
+    )
+
+    # add offerings
+    offerings_head = [ 'Term Name', '# Enrolled', '# Cap', '# Sections', ]
+    offerings_body = [
+        [
+            parse_term_code(o['term']),
+            sum([int(c['enrolTotal']) for c in o['classes']]),
+            sum([int(c['enrolCap']) for c in o['classes']]),
+            len(o['classes']),
+        ] for o in offerings_list
+    ][int(NO_IN_PAGE * 2 * (int(page) - 1)):int(min(int(NO_IN_PAGE * 2 * int(page)), len(offerings_list)))]
+
+    response.add_field(
+        name = 'Offerings (page {} of {})'.format(page, (len(offerings_list) - 1 )// (NO_IN_PAGE * 2) + 1),
+        value = '```' + tabulate(offerings_body, offerings_head) + '```',
+        inline = False
+    )
+
+    # add last updated
+    response.set_footer(
+        text = 'Last updated: ' + class_info['dateUpdated'] + ' EST'
+    )
+
+    if type(response) == discord.Embed:
+        await ctx.send(embed=response)
+    else:
+        await ctx.send(response)
 
 # handle errors for discord bot
 @bot.event
@@ -354,6 +427,8 @@ if __name__ == '__main__':
         bot.run(TOKEN)
     except Exception as e:
         # close driver if any errors arise
+        driver.close()
+    finally:
         driver.close()
 
 

@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import requests
 import json
 import re
-from pymongo import MongoClient
+from pymongo import MongoClient, DESCENDING
 
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
@@ -115,6 +115,11 @@ def get_uwflow_metrics(driver, subjectCode, catalogNumber, TIMEOUT = 2):
 
         return {}
 
+# get the offerings when a course was last offered
+def terms_course_last_offered(subjectCode, catalogNumber):
+    offerings = db_courses.find({'subjectCode': subjectCode , 'catalogNumber': catalogNumber}).sort('term', DESCENDING)
+    return [x for x in offerings]
+
 # get class info 
 def get_class_info(driver, subjectCode, catalogNumber, term = CURRENT_TERM, tries=0):
     
@@ -128,8 +133,8 @@ def get_class_info(driver, subjectCode, catalogNumber, term = CURRENT_TERM, trie
 
     # if class info is None, try the previous term
     if db_class_info == None:
-        if tries < 3:
-            return get_class_info(subjectCode, catalogNumber, get_last_term_code(term), tries + 1)
+        if tries < 20:
+            return get_class_info(driver, subjectCode, catalogNumber, get_last_term_code(term), tries + 1)
         # after 3 tries, if still no match, let the class info just be a dict with default info
         db_class_info = {
             'term': 0,
