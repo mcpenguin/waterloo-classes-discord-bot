@@ -9,6 +9,13 @@
             "wc?class MATH 135 -c 6067: Get information about class with number 6067 for MATH 135"
         ]
     },
+    "history": {
+        "desc": "Get information about when a course was last offered",
+        "use": "wc?history [subject_code] [catalog_number] (-p page_number)",
+        "examples": [
+            "wc?history MATH 135: Get information on when MATH 135 was last offered"
+        ]
+    },
     "info": {
         "desc": "Get information about the bot",
         "use": "wc?info"
