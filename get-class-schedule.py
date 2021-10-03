@@ -8,7 +8,7 @@ import mechanize
 import json
 from bs4 import BeautifulSoup
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import pytz
 
 # %%
@@ -31,6 +31,15 @@ WAPI_URL = "https://openapi.data.uwaterloo.ca/v3"
 
 # uw flow url
 UW_FLOW_URL = 'https://uwflow.com/course'
+
+# get current termcode given date (which is a datetime object)
+def get_termcode(date):
+    # return the 'year' part of the termcode
+    year_termcode = int(date.year) - 1900
+    # return the 'month' part of the termcode
+    # 1 = Winter; 5 = Spring; 9 = Fall
+    month_termcode = 1 if date.month < 5 else 5 if date.month < 9 else 9
+    return str(year_termcode) + str(month_termcode)
 
 # get 'default' term
 # gets the 'next' term if > 15th day of the starting month of the current term; otherwise returns the current term
