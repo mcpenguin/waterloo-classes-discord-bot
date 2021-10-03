@@ -37,11 +37,10 @@ subjectCode = None
 catalogNumber = None
 tmp_subjectCode = 'ACC'
 
+url = "https://cs.uwaterloo.ca/cscf/teaching/schedule/expert"
 TIMEOUT = 2
 
 def get_previous_class_schedule(driver, client):
-    url = "https://cs.uwaterloo.ca/cscf/teaching/schedule/expert"
-
     driver.get(url)
     # wait for page to load
     WebDriverWait(driver, TIMEOUT).until(
@@ -50,18 +49,19 @@ def get_previous_class_schedule(driver, client):
     # switch to select form frame
     driver.switch_to.frame(0)
     # get page source of select form
-    content = driver.page_source
-    print(content)
-
-    return 0
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
 
     # get list of terms, levels and subjects
     # list of termcodes
-    # terms = [item.attrs['value'] for item in br.find_control(name='sess').items]
-    # # list of subject codes (get if non empty)
-    # subjects = [item.attrs['value'] for item in br.find_control(name='subject').items if item.attrs['value']]
+    terms = [item.attrs['value'] for item in soup.find('select', {'name': 'sess'}).find_all('option')]
+    # list of levels (undergrad or grad)
+    levels = [item.attrs['value'] for item in soup.find('select', {'name': 'level'}).find_all('option')]
+    # list of subject codes (get if non empty)
+    subjects = [item.attrs['value'] for item in soup.find('select', {'name': 'subject'}).find_all('option') if item.attrs['value']]
 
-    # print(terms, subjects)
+    # print(terms, levels, subjects)
+
+    return
 
 if __name__ == '__main__':
     # get mongodb database using mongo client
