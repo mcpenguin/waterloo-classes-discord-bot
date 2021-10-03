@@ -186,7 +186,7 @@ def get_previous_class_schedule(driver, client):
 
             print(f"Added courses for subject {subject} for term {term} for level {'UG' if level == 'under' else 'G'}")
         except:
-            continue
+            pass
 
         # once done, switch back to the form frame
         driver.switch_to.default_content()
