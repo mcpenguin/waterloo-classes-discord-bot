@@ -14,12 +14,12 @@ import re
 from pymongo import MongoClient
 
 from bs4 import BeautifulSoup
-# from selenium import webdriver
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
-# from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
-# from selenium.webdriver.chrome.options import Options
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
+from selenium.webdriver.firefox.options import Options
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -31,11 +31,6 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # GUILD = os.getenv('DISCORD_GUILD')
 MONGO_URL = os.getenv('MONGO_URL')
 API_KEY = os.getenv('API_KEY')
-
-# initialize chrome driver
-# chrome_options = Options()
-# chrome_options.add_argument("--headless")
-# driver = webdriver.Chrome(executable_path=os.getenv("DRIVER_PATH"), options=chrome_options)
 
 # get current termcode given date (which is a datetime object)
 def get_termcode(date):
@@ -65,7 +60,6 @@ def get_default_term():
         return next_termcode
 
 CURRENT_TERM = get_default_term()
-print(CURRENT_TERM)
 NO_IN_PAGE = 5
 
 PREFIX = 'wc?'
@@ -108,26 +102,26 @@ def convert_rgb_to_tuple(rgb):
         return (0, 0, 0)
 
 # get uwflow metrics
-# def get_uwflow_metrics(subjectCode, catalogNumber, TIMEOUT = 2):
-#     try:
-#         driver.get(f"{UW_FLOW_URL}/{subjectCode}{catalogNumber}")
-#         # wait for page to load
-#         WebDriverWait(driver, TIMEOUT).until(EC.presence_of_element_located((By.CLASS_NAME, "iYtUny")))
-#         # get html of page
-#         content = driver.page_source
-#         soup = BeautifulSoup(content, 'html.parser')
+def get_uwflow_metrics(subjectCode, catalogNumber, TIMEOUT = 2):
+    try:
+        driver.get(f"{UW_FLOW_URL}/{subjectCode}{catalogNumber}")
+        # wait for page to load
+        WebDriverWait(driver, TIMEOUT).until(EC.presence_of_element_located((By.CLASS_NAME, "iYtUny")))
+        # get html of page
+        content = driver.page_source
+        soup = BeautifulSoup(content, 'html.parser')
 
-#         # get the metrics
-#         percent_liked = soup.find('div', {'class': 'sc-psQdR'}).text
-#         [percent_easy, percent_useful] = [x.text for x in soup.find('div', {'class': 'PQBAt'}).find_all('div', {'class': 'jjDvpo'})]
+        # get the metrics
+        percent_liked = soup.find('div', {'class': 'sc-psQdR'}).text
+        [percent_easy, percent_useful] = [x.text for x in soup.find('div', {'class': 'PQBAt'}).find_all('div', {'class': 'jjDvpo'})]
 
-#         return {'percent_liked': percent_liked, 'percent_easy': percent_easy, 'percent_useful': percent_useful}
+        return {'percent_liked': percent_liked, 'percent_easy': percent_easy, 'percent_useful': percent_useful}
 
-#     except Exception as e:
-#         # print(e)
-#         # print(f"Unable to retrieve course info for course {subjectCode} {catalogNumber}")
+    except Exception as e:
+        # print(e)
+        # print(f"Unable to retrieve course info for course {subjectCode} {catalogNumber}")
 
-#         return {}
+        return {}
 
 # get class info 
 def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM, tries=0):
@@ -162,7 +156,7 @@ def get_class_info(subjectCode, catalogNumber, term = CURRENT_TERM, tries=0):
         return 'Class does not exist'
 
     # if course does indeed exist, get UW Flow metrics
-    # uw_flow_metrics = get_uwflow_metrics(subjectCode, catalogNumber)
+    uw_flow_metrics = get_uwflow_metrics(subjectCode, catalogNumber)
 
     # return the combined info
     return {'term': term, **db_class_info, **db_course_info}
@@ -382,23 +376,23 @@ async def get_class_list(ctx):
         # add uwflow metrics (percent liked, easy, useful)
         response.add_field(name = chr(173), value = chr(173))
 
-        # response.add_field(
-        #     name = 'Liked % (on UW Flow)',
-        #     value = class_info.get('percent_liked', 'N/A'),
-        #     inline = True
-        # )
+        response.add_field(
+            name = 'Liked % (on UW Flow)',
+            value = class_info.get('percent_liked', 'N/A'),
+            inline = True
+        )
 
-        # response.add_field(
-        #     name = 'Easy % (on UW Flow)',
-        #     value = class_info.get('percent_easy', 'N/A'),
-        #     inline = True
-        # )
+        response.add_field(
+            name = 'Easy % (on UW Flow)',
+            value = class_info.get('percent_easy', 'N/A'),
+            inline = True
+        )
 
-        # response.add_field(
-        #     name = 'Useful % (on UW Flow)',
-        #     value = class_info.get('percent_useful', 'N/A'),
-        #     inline = True
-        # )
+        response.add_field(
+            name = 'Useful % (on UW Flow)',
+            value = class_info.get('percent_useful', 'N/A'),
+            inline = True
+        )
 
         # add course reqs
         reqs = parse_prerequisites(class_info['requirementsDescription'])
@@ -537,11 +531,14 @@ async def on_command_error(ctx, error):
 
 # run bot
 if __name__ == '__main__':
+    firefox_options = Options()
+    firefox_options.add_argument("--headless")
+    driver = webdriver.Chrome(executable_path=os.getenv("DRIVER_PATH"), options=firefox_options)
     try:
         bot.run(TOKEN)
     except Exception as e:
         # close driver if any errors arise
-        driver.quit()
+        driver.close()
 
 
 
