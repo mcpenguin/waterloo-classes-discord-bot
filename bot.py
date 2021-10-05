@@ -158,9 +158,11 @@ async def get_class_list(ctx):
         catalogNumber = parts[1].upper() 
 
     # get tag values (if they exist)
-    term = get_tag_value('-t', content, CURRENT_TERM)
-    page = get_tag_value('-p', content, 1)
-    class_no = get_tag_value('-c', content, None)
+    term = get_tag_value('-term', content, CURRENT_TERM)
+    page = get_tag_value('-page', content, 1)
+    class_no = get_tag_value('-class', content, None)
+
+    print(term, page, class_no)
 
     # get color of embed from subject code
     color = convert_rgb_to_tuple(color_config[subjectCode]['color']['background'])
@@ -343,7 +345,7 @@ async def get_course_history(ctx):
     content = ctx.message.content
     params = content.split(" ")[1:]
 
-    page = get_tag_value('-p', content, 1)
+    page = get_tag_value('-page', content, 1)
 
     # initialize generic response
     response = 'The system could not find the specified class/course, please try again'
