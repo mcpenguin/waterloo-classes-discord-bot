@@ -4,16 +4,17 @@
         "use": "wc?class [subject_code] [catalog_number] (-t termcode) (-p page_number) (-c class_number)",
         "examples": [
             "wc?class MATH 135: Get information about MATH 135",
-            "wc?class MATH 135 -p 2: Get second page of classes for MATH 135",
-            "wc?class MATH 135 -t 1215: Get information about MATH 135 in Spring 2021 (which has termcode 1215)",
-            "wc?class MATH 135 -c 6067: Get information about class with number 6067 for MATH 135"
+            "wc?class MATH 135 -page 2: Get second page of classes for MATH 135",
+            "wc?class MATH 135 -term 1215: Get information about MATH 135 in Spring 2021 (which has termcode 1215)",
+            "wc?class MATH 135 -class 6067: Get information about class with number 6067 for MATH 135"
         ]
     },
     "history": {
         "desc": "Get information about when a course was last offered",
         "use": "wc?history [subject_code] [catalog_number] (-p page_number)",
         "examples": [
-            "wc?history MATH 135: Get information on when MATH 135 was last offered"
+            "wc?history MATH 135: Get information on when MATH 135 was last offered",
+            "wc?history MATH 135 -page 2: Get second page of when MATH 135 was offered"
         ]
     },
     "info": {
