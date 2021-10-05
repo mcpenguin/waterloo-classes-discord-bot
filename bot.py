@@ -162,8 +162,6 @@ async def get_class_list(ctx):
     page = get_tag_value('-page', content, 1)
     class_no = get_tag_value('-class', content, None)
 
-    print(term, page, class_no)
-
     # get color of embed from subject code
     color = convert_rgb_to_tuple(color_config[subjectCode]['color']['background'])
     disc_color = discord.Color.from_rgb(color[0], color[1], color[2])
