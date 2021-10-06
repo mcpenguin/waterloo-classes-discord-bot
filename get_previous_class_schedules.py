@@ -141,7 +141,7 @@ def add_subject_to_db(term, level, subject, courses, client):
     # insert new data
     client['waterloo']['courses'].insert_many(courses)
 
-def get_previous_class_schedule(driver, client):
+def get_previous_class_schedule(driver, client, specific_terms=None):
     driver.get(url)
     # wait for page to load
     WebDriverWait(driver, TIMEOUT).until(
@@ -154,7 +154,10 @@ def get_previous_class_schedule(driver, client):
 
     # get list of terms, levels and subjects
     # list of termcodes
-    terms = [option.attrs['value'] for option in soup.find('select', {'name': 'sess'}).find_all('option')]
+    if specific_terms == None:
+        terms = [option.attrs['value'] for option in soup.find('select', {'name': 'sess'}).find_all('option')]
+    else:
+        terms = specific_terms
     # list of levels (undergrad or grad)
     levels = [option.attrs['value'] for option in soup.find('select', {'name': 'level'}).find_all('option')]
     # list of subject codes (get if non empty)
