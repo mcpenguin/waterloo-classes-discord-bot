@@ -3,3 +3,4 @@ testing.ipynb
 test.json
 geckodriver.log
 __pycache__
+node_modules
