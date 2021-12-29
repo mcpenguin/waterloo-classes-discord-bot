@@ -18,11 +18,10 @@ async function run_db_query(collection, query, limit=null) {
         await client.connect();
         const database = client.db('waterloo');
         const col = database.collection(collection);
-        const result;
-        if (limit)
-            const result = await col.find(query);
-        else
-            const result = await col.find(query).limit(limit);
+        const result = 
+            limit === 1 ? await col.findOne(query) :
+            limit ? await col.find(query).limit(limit).toArray() :
+            await col.find(query).toArray();
         return result;
     } 
     catch (err) {
@@ -35,4 +34,6 @@ async function run_db_query(collection, query, limit=null) {
 }
 
 
-export default run_db_query;
+module.exports = {
+    run_db_query
+};
