@@ -1,9 +1,11 @@
-// get info about discord bot
+// get information about a course
+
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
 const embed = interaction => {
-	// console.log(interaction.options.get('test').value);
+    // get fields
+	console.log(interaction.options.get('test').value);
 	return new MessageEmbed()
 		.setColor('#0099ff')
 		.setTitle('Waterloo Classes Bot')
@@ -19,14 +21,18 @@ const embed = interaction => {
 }
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('info')
-		.setDescription('Displays information about the bot')
+		.setName('course')
+		.setDescription('Get information about a course')
+        .addStringOption(option => option
+            .setName('course')
+            .setDescription('The course to get information about')
+            .setRequired(true)
+        )
 		.addStringOption(option => option
-			.setName('test')
-			.setDescription('the test category')
-			.setRequired(true)
-		)
-		,
+			.setName('termcode')
+			.setDescription('The termcode for the course')
+        )
+    ,
 	async execute(interaction) {
         try {
 		    await interaction.reply({
