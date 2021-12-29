@@ -1,20 +1,20 @@
-// get info about the bot
+// example for bot embeds
+// delete before deploying
+
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
-const exampleEmbed = new MessageEmbed()
+const embed = new MessageEmbed()
 	.setColor('#0099ff')
-	.setTitle('Some title')
-	.setURL('https://discord.js.org/')
-	// .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
-    .setAuthor("Example")
-	.setDescription('Some description here')
-	.setThumbnail('https://i.imgur.com/AfFp7pu.png')
+	.setTitle('Waterloo Classes Bot')
+	.setURL('https://https://github.com/mcpenguin/waterloo-classes-discord-bot')
+	.setAuthor('Marcus Chan', 'https://avatars.githubusercontent.com/mcpenguin', 'https://github.com/mcpenguin')
+	.setDescription("*Waterloo Classes Bot* is a bot that allows you to search for classes offered by the University of Waterloo, using the UWaterloo Open Data API and a web scraper for classes.uwaterloo.ca.")
 	.addFields(
-		{ name: 'Regular field title', value: 'Some value here' },
-		{ name: '\u200B', value: '\u200B' },
-		{ name: 'Inline field title', value: 'Some value here', inline: true },
-		{ name: 'Inline field title', value: 'Some value here', inline: true },
+		{ 
+			name: 'Add the bot to other servers!', 
+			value: 'https://discord.com/api/oauth2/authorize?client_id=877440425718333460&permissions=2048&scope=bot' 
+		},
 	);
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
 	async execute(interaction) {
         try {
 		    await interaction.reply({
-                embeds: [exampleEmbed]
+                embeds: [embed]
             });
         } catch (err) {
             console.error(err);
