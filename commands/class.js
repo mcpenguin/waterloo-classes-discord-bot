@@ -3,9 +3,15 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
+const getCurrentSeason = () => '1';
+const getCurrentYear = () => '2022';
+
 const embed = interaction => {
     // get fields
-	console.log(interaction.options.get('test').value);
+	let course = interaction.options.get('course').value;
+    let season = interaction.options.get('season').value || getCurrentSeason();
+    let year = interaction.options.get('year').value || getCurrentYear();
+
 	return new MessageEmbed()
 		.setColor('#0099ff')
 		.setTitle('Waterloo Classes Bot')
@@ -28,9 +34,18 @@ module.exports = {
             .setDescription('The course to get information about')
             .setRequired(true)
         )
-		.addStringOption(option => option
-			.setName('termcode')
-			.setDescription('The termcode for the course')
+        .addStringOption(option => option
+            .setName('season')
+            .setDescription('The season to query')
+            // numbers correspond to the "termcode" that each season
+            // correspond to
+            .addChoice('Fall', '9')
+            .addChoice('Winter', '1')
+            .addChoice('Spring', '5')    
+        )
+        .addIntegerOption(option => option
+            .setName('year')
+            .setDescription('The year to query')
         )
     ,
 	async execute(interaction) {
