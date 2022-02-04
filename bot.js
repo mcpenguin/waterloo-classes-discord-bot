@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const { MongoClient } = require("mongodb");
-const {db_connect, db_close} = require('./helpers/run-db-query');
+const {db_connect, db_close} = require('./client/helpers/run-db-query');
 
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');

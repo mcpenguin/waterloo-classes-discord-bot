@@ -3,9 +3,9 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
-const color_config = require('../color_config.json')
-const get_course_info = require('../helpers/get-course-info').get_course_info;
-const get_subject_codes = require('../helpers/get-subject-codes');
+const color_config = require('../../color_config.json')
+const get_course_info = require('../../helpers/get-course-info').get_course_info;
+const get_subject_codes = require('../../helpers/get-subject-codes');
 
 const getCurrentSeason = () => '1';
 const getCurrentYear = () => '2022';
