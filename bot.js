@@ -1,8 +1,15 @@
 require('dotenv').config();
 
+const { MongoClient } = require("mongodb");
+const {db_connect, db_close} = require('./helpers/run-db-query');
+
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
+
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+
+const uri = process.env.MONGO_URL;
+const mongo_client = new MongoClient(uri);
 
 client.commands = new Collection();
 
@@ -23,9 +30,10 @@ client.once('ready', () => {
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
 
+    await mongo_client.connect();
     const command = client.commands.get(interaction.commandName);
     try {
-        await command.execute(interaction);
+        await command.execute(interaction, mongo_client);
     }
     catch (err) {
         console.error(err);
@@ -36,4 +44,19 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
-client.login(process.env.DISCORD_TOKEN_JS);
+async function main() {
+    try {
+        await mongo_client.connect();
+        client.login(process.env.DISCORD_TOKEN_JS);
+    }
+    catch (err) {
+        console.error(err);
+    }
+    // finally {
+    //     console.log("end");
+    //     mongo_client.close();
+    // };
+}
+
+main();
+

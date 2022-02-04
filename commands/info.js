@@ -27,7 +27,7 @@ module.exports = {
 			.setRequired(true)
 		)
 		,
-	async execute(interaction) {
+	async execute(interaction, mongo_client) {
         try {
 		    await interaction.reply({
                 embeds: [embed(interaction)]

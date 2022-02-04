@@ -15,7 +15,6 @@ const client = new MongoClient(uri);
  */
 async function run_db_query(collection, query, limit=null) {
     try {
-        await client.connect();
         const database = client.db('waterloo');
         const col = database.collection(collection);
         const result = 
@@ -26,10 +25,6 @@ async function run_db_query(collection, query, limit=null) {
     } 
     catch (err) {
         console.error(err);
-    }
-    finally {
-        // Ensures that the client will close when you finish/error
-        await client.close();
     }
 }
 
