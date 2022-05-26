@@ -1,0 +1,32 @@
+{
+  "name": "wclasses-discord-bot-server",
+  "version": "1.0.0",
+  "description": "Back-end for discord bot.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "concurrently \"tsc -w\" \"nodemon dist/js/app.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcpenguin/waterloo-classes-discord-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8",
+    "node": "^17.4.0",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.10",
+    "dotenv": "^14.3.0",
+    "typescript": "^3.9.10"
+  }
+}
